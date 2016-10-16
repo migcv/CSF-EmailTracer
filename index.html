@@ -11,14 +11,31 @@
 <body>
     <h1>Email Location Tracker</h1>
     <div class="emailHeader">
-        <textarea id="emailHeader" rows="20" cols="50" placeholder="Insert email header here"></textarea>
-        <button onclick="parser()">Go!</button>
+        <textarea id="emailHeader" placeholder="Insert email header here"></textarea>
+        <button onclick="parser()">Track!</button>
     </div>
-    <p id="deliveredTo"></p>
-    <p id="returnPath"></p>
-    <p id="received"></p>
-    <p id="receivedX"></p>
-    <p id="date"></p>
+    <div class="result">
+        <p>
+            <span class="email-fields">Delivered-To:<br></span>
+            <span id="deliveredTo"></span>
+        </p>
+        <p>
+            <span class="email-fields">Return-Path:<br></span>
+            <span id="returnPath"></span>
+        </p>
+        <p>
+            <span class="email-fields">Received:<br></span>
+            <span id="received"></span>
+        </p>
+        <p>
+            <span class="email-fields">X-Received:<br></span>
+            <span id="receivedX"></span>
+        </p>
+        <p>
+            <span class="email-fields">Date:<br></span>
+            <span id="date"></span>
+        </p>
+    </div>
 
     <script>
 
