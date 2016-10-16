@@ -8,21 +8,42 @@
 
 <textarea id="emailHeader" rows="20" cols="50"> </textarea>
 <button onclick="parser()">Go!</button>
-<p id="res"></p>
+<p id="deliveredTo"></p>
+<p id="returnPath"></p>
+<p id="received"></p>
+<p id="receivedX"></p>
+<p id="date"></p>
 
 <script>
 
 function parser(){
   var emailHeader = document.getElementById("emailHeader").value;
   var headerSplitter = emailHeader.split(";");
-  var i, text;
-  for(i = 0; i < headerSplitter.length; i++){
-    text += headerSplitter[i] + "<br>";
-    console.log(headerSplitter[i]);
-    console.log("\n");
+  var j, deliveredTo, returnPath, received, receivedX, date;
+
+  for(j = 0; j < headerSplitter.length; j++){
+    if(headerSplitter[j].includes("Delivered-To")){
+      deliveredTo = headerSplitter[j];
+    }
+    if(headerSplitter[j].includes("Return-Path")){
+      returnPath = headerSplitter[j];
+    }
+    if(headerSplitter[j].includes("Received")){
+      received = headerSplitter[j];
+    }
+    if(headerSplitter[j].includes("X-Received")){
+      receivedX = headerSplitter[j];
+    }
+    if(headerSplitter[j].includes("Date")){
+      date = headerSplitter[j];
+    }
   }
 
-  document.getElementById("res").innerHTML = text;
+  document.getElementById("deliveredTo").innerHTML = deliveredTo;
+  document.getElementById("returnPath").innerHTML = returnPath;
+  document.getElementById("received").innerHTML = received;
+  document.getElementById("receivedX").innerHTML = receivedX;
+  document.getElementById("date").innerHTML = date;
 
 }
 
