@@ -1,33 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Email Tracker</title>
+
+    <link href="style.css" rel="stylesheet">
+
+</head>
 <body>
+    <h1>Email Location Tracker</h1>
+    <div class="emailHeader">
+        <textarea id="emailHeader" rows="20" cols="50" placeholder="Insert email header here"></textarea>
+        <button onclick="parser()">Go!</button>
+    </div>
+    <p id="res"></p>
 
-<h1>Parser</h1>
+    <script>
+        function parser(){
+          var emailHeader = document.getElementById("emailHeader").value;
+          var headerSplitter = emailHeader.split(";");
+          var i, text;
+          for(i = 0; i < headerSplitter.length; i++){
+            text += headerSplitter[i] + "<br>";
+            console.log(headerSplitter[i]);
+            console.log("\n");
+          }
 
-<p id="demo">Click here to parse.</p>
+          document.getElementById("res").innerHTML = text;
 
-<textarea id="emailHeader" rows="20" cols="50"> </textarea>
-<button onclick="parser()">Go!</button>
-<p id="res"></p>
-
-<script>
-
-function parser(){
-  var emailHeader = document.getElementById("emailHeader").value;
-  var headerSplitter = emailHeader.split(";");
-  var i, text;
-  for(i = 0; i < headerSplitter.length; i++){
-    text += headerSplitter[i] + "<br>";
-    console.log(headerSplitter[i]);
-    console.log("\n");
-  }
-
-  document.getElementById("res").innerHTML = text;
-
-}
-
-</script>
-
-
+        }
+    </script>
 </body>
 </html>
