@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Parser</h1>
+
+<p id="demo">Click here to parse.</p>
+
+<textarea id="emailHeader" rows="20" cols="50"> </textarea>
+<button onclick="parser()">Go!</button>
+<p id="res"></p>
+
+<script>
+
+function parser(){
+  var emailHeader = document.getElementById("emailHeader").value;
+  var headerSplitter = emailHeader.split(";");
+  var i, text;
+  for(i = 0; i < headerSplitter.length; i++){
+    text += headerSplitter[i] + "<br>";
+    console.log(headerSplitter[i]);
+    console.log("\n");
+  }
+
+  document.getElementById("res").innerHTML = text;
+
+}
+
+</script>
+
+
+</body>
+</html>
