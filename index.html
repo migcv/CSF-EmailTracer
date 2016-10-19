@@ -32,6 +32,10 @@
             <span id="receivedX"></span>
         </p>
         <p>
+            <span class="email-fields">Received-SPF<br></span>
+            <span id="receivedSPF"></span>
+        </p>
+        <p>
             <span class="email-fields">Date:<br></span>
             <span id="date"></span>
         </p>
@@ -41,24 +45,34 @@
 
     function parser(){
       var emailHeader = document.getElementById("emailHeader").value;
-      var headerSplitter = emailHeader.split(";");
-      var j, deliveredTo, returnPath, received, receivedX, date;
+      var headerSplitter = emailHeader.split("\n");
+      var j;
+      var deliveredTo = new Array();
+      var returnPath = new Array();
+      var received = new Array();
+      var receivedX = new Array();
+      var receivedSPF = new Array();
+      var date = new Array();
 
       for(j = 0; j < headerSplitter.length; j++){
-        if(headerSplitter[j].includes("Delivered-To")){
-          deliveredTo = headerSplitter[j];
+
+        if(headerSplitter[j].includes("Delivered-To:")){
+          deliveredTo.push(headerSplitter[j]);
         }
-        if(headerSplitter[j].includes("Return-Path")){
-          returnPath = headerSplitter[j];
+        if(headerSplitter[j].includes("Return-Path:")){
+          returnPath.push(headerSplitter[j]);
         }
-        if(headerSplitter[j].includes("Received")){
-          received = headerSplitter[j];
+        if(headerSplitter[j].includes("Received:")){
+          received.push(headerSplitter[j]);
         }
-        if(headerSplitter[j].includes("X-Received")){
-          receivedX = headerSplitter[j];
+        if(headerSplitter[j].includes("X-Received:")){
+          receivedX.push(headerSplitter[j]);
         }
-        if(headerSplitter[j].includes("Date")){
-          date = headerSplitter[j];
+        if(headerSplitter[j].includes("Received-SPF:")){
+          receivedSPF.push(headerSplitter[j]);
+        }
+        if(headerSplitter[j].includes("Date:")){
+          date.push(headerSplitter[j]);
         }
       }
 
@@ -66,6 +80,7 @@
       document.getElementById("returnPath").innerHTML = returnPath;
       document.getElementById("received").innerHTML = received;
       document.getElementById("receivedX").innerHTML = receivedX;
+      document.getElementById("receivedSPF").innerHTML = receivedSPF;
       document.getElementById("date").innerHTML = date;
 
     }
