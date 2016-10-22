@@ -96,9 +96,10 @@ function parser(){
     // Changes display of #parse-result to "block"
     document.getElementById("parse-result").style.display = "block";
 
-    getReceiverEmail(deliveredTo);
-    getSenderEmail(from);
     getDateEmail(date);
+    getDeliverTo(deliveredTo);
+    getFrom(from);
+    getTo(to);
 }
 
 function indexOfFields(headerLine) {
@@ -115,12 +116,12 @@ function indexOfFields(headerLine) {
     return -1;
 }
 
-function getReceiverEmail(deliveredTo){
+function getDeliverTo(deliveredTo){
     var email = deliveredTo[0].split(":");
     console.log(email[1]);
 }
 
-function getSenderEmail(from){
+function getFrom(from){
     var aux = from[0].split(":");
     var aux1 = aux[1].split(" ");
     var i, email;
@@ -135,8 +136,14 @@ function getSenderEmail(from){
     console.log(email);
 }
 
-function getDateEmail (date) {
+function getDateEmail(date){
     var dt = date[0].split("Date:");
     console.log(dt[1]);
-    console.log(dt[0]);
+}
+
+function getTo(to){
+    var aux = to[0].split(";");
+    var i;
+    for(i = 0; i < aux.length; i++)
+        console.log(aux[i]);
 }
