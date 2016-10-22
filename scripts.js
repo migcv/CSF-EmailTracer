@@ -96,10 +96,13 @@ function parser(){
     // Changes display of #parse-result to "block"
     document.getElementById("parse-result").style.display = "block";
 
-    getDateEmail(date);
-    getDeliverTo(deliveredTo);
-    getFrom(from);
-    getTo(to);
+    
+    console.log(getDeliverToAndDateAndSubject(deliveredTo, "Delivered-To:"));
+    console.log(getFrom(from));
+    console.log(getDeliverToAndDateAndSubject(date, "Date:"));
+    console.log(getToCC(to, "To:"));
+    console.log(getToCC(cc, "Cc:"));
+    console.log(getDeliverToAndDateAndSubject(subject, "Subject:"));
 }
 
 function indexOfFields(headerLine) {
@@ -116,9 +119,9 @@ function indexOfFields(headerLine) {
     return -1;
 }
 
-function getDeliverTo(deliveredTo){
-    var email = deliveredTo[0].split(":");
-    console.log(email[1]);
+function getDeliverToAndDateAndSubject(array, string){
+    var aux = array[0].split(string);
+    return aux[1];
 }
 
 function getFrom(from){
@@ -133,17 +136,19 @@ function getFrom(from){
     }
     email = email.replace('<',' ');
     email = email.replace('>', ' ');
-    console.log(email);
+    return email;
 }
 
-function getDateEmail(date){
-    var dt = date[0].split("Date:");
-    console.log(dt[1]);
+function getToCC(to, stringtoFind){
+    var aux = to[0].split(stringtoFind);
+    aux = aux[1].split(",");
+    var i,k;
+    for(i = 0; i < aux.length; i++){
+        k = aux[i].indexOf('<');
+        aux[i] = aux[i].substr(k, aux[i].length);
+        aux[i] = aux[i].replace('<',' ');
+        aux[i] = aux[i].replace('>',' ');
+    }
+    return aux;
 }
 
-function getTo(to){
-    var aux = to[0].split(";");
-    var i;
-    for(i = 0; i < aux.length; i++)
-        console.log(aux[i]);
-}
