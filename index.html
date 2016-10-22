@@ -10,18 +10,18 @@
 </head>
 <body>
     <h1>Email Location Tracker</h1>
-    <div class="emailHeader">
-        <textarea id="emailHeader" placeholder="Insert email header here"></textarea>
+    <section id="email-header-input">
+        <textarea id="email-header" placeholder="Insert email header here"></textarea>
         <button onclick="parser()">Track!</button>
-    </div>
-    <div class="result">
+    </section>
+    <section id="parse-result">
         <p>
             <span class="email-fields">Delivered-To:<br></span>
             <span id="deliveredTo"></span>
         </p>
         <p>
-            <span class="email-fields">Return-Path:<br></span>
-            <span id="returnPath"></span>
+            <span class="email-fields">From:<br></span>
+            <span id="from"></span>
         </p>
         <p>
             <span class="email-fields">Received:<br></span>
@@ -29,7 +29,7 @@
         </p>
         <p>
             <span class="email-fields">X-Received:<br></span>
-            <span id="receivedX"></span>
+            <span id="x-received"></span>
         </p>
         <p>
             <span class="email-fields">Received-SPF<br></span>
@@ -39,52 +39,20 @@
             <span class="email-fields">Date:<br></span>
             <span id="date"></span>
         </p>
-    </div>
+        <p>
+            <span class="email-fields">Subject:<br></span>
+            <span id="subject"></span>
+        </p>
+        <p>
+            <span class="email-fields">Cc:<br></span>
+            <span id="cc"></span>
+        </p>
+        <p>
+            <span class="email-fields">To:<br></span>
+            <span id="to"></span>
+        </p>
+    </section>
 
-    <script>
-
-    function parser(){
-      var emailHeader = document.getElementById("emailHeader").value;
-      var headerSplitter = emailHeader.split("\n");
-      var j;
-      var deliveredTo = new Array();
-      var returnPath = new Array();
-      var received = new Array();
-      var receivedX = new Array();
-      var receivedSPF = new Array();
-      var date = new Array();
-
-      for(j = 0; j < headerSplitter.length; j++){
-
-        if(headerSplitter[j].includes("Delivered-To:")){
-          deliveredTo.push(headerSplitter[j]);
-        }
-        if(headerSplitter[j].includes("Return-Path:")){
-          returnPath.push(headerSplitter[j]);
-        }
-        if(headerSplitter[j].includes("Received:")){
-          received.push(headerSplitter[j]);
-        }
-        if(headerSplitter[j].includes("X-Received:")){
-          receivedX.push(headerSplitter[j]);
-        }
-        if(headerSplitter[j].includes("Received-SPF:")){
-          receivedSPF.push(headerSplitter[j]);
-        }
-        if(headerSplitter[j].includes("Date:")){
-          date.push(headerSplitter[j]);
-        }
-      }
-
-      document.getElementById("deliveredTo").innerHTML = deliveredTo;
-      document.getElementById("returnPath").innerHTML = returnPath;
-      document.getElementById("received").innerHTML = received;
-      document.getElementById("receivedX").innerHTML = receivedX;
-      document.getElementById("receivedSPF").innerHTML = receivedSPF;
-      document.getElementById("date").innerHTML = date;
-
-    }
-
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
