@@ -14,6 +14,20 @@
         <textarea id="email-header" placeholder="Insert email header here"></textarea>
         <button onclick="parser()">Track!</button>
     </section>
+    <section id="received-table">
+        <table style="width:100%">
+            <thead>
+                <tr>
+                    <td>Received-by</td>
+                    <td>Received-from</td>
+                    <td>Protocol</td>
+                    <td>Date</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </section>
     <section id="parse-result">
         <p>
             <span class="email-fields">Delivered-To:<br></span>
@@ -23,7 +37,7 @@
             <span class="email-fields">From:<br></span>
             <span id="from"></span>
         </p>
-        <p>
+        <!--<p>
             <span class="email-fields">Received:<br></span>
             <span id="received"></span>
         </p>
@@ -32,13 +46,9 @@
             <span id="x-received"></span>
         </p>
         <p>
-            <span class="email-fields">Received-SPF:<br></span>
-            <span id="receivedSPF"></span>
-        </p>
-        <p>
             <span class="email-fields">Date:<br></span>
             <span id="date"></span>
-        </p>
+        </p>-->
         <p>
             <span class="email-fields">Subject:<br></span>
             <span id="subject"></span>

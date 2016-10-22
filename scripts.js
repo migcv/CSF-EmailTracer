@@ -8,6 +8,11 @@ function parser(){
     // Array to store information of each field that matters
     var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(), received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array();
 
+    var tableRef = undefined;
+    var newRow = undefined;
+    var aux = undefined;
+    var received_table = undefined;
+
     for(j = 0; j < headerSplitter.length; j++) {
 
         if(headerSplitter[j].includes("Delivered-To:") && headerSplitter[j].indexOf("Delivered-To:") == 0){
@@ -16,7 +21,6 @@ function parser(){
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 deliveredTo[len-1] += headerSplitter[++j];
             }
-            deliveredTo[len-1] += "<br>";
         }
         if(headerSplitter[j].includes("From:") && headerSplitter[j].indexOf("From:") == 0){
             from.push(headerSplitter[j]);
@@ -24,7 +28,6 @@ function parser(){
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 from[len-1] += headerSplitter[++j];
             }
-            from[len-1] += "<br>";
         }
         if(headerSplitter[j].includes("Received:") && headerSplitter[j].indexOf("Received:") == 0){
             received.push(headerSplitter[j]);
@@ -32,7 +35,6 @@ function parser(){
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 received[len-1] += headerSplitter[++j];
             }
-            received[len-1] += "<br>";
         }
         if(headerSplitter[j].includes("X-Received:") && headerSplitter[j].indexOf("X-Received:") == 0){
             x_received.push(headerSplitter[j]);
@@ -40,15 +42,6 @@ function parser(){
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 x_received[len-1] += headerSplitter[++j];
             }
-            x_received[len-1] += "<br>";
-        }
-        if(headerSplitter[j].includes("Received-SPF:") && headerSplitter[j].indexOf("Received-SPF:") == 0){
-            received_spf.push(headerSplitter[j]);
-            len = received_spf.length;
-            while(indexOfFields(headerSplitter[j+1]) != 0) {
-                received_spf[len-1] += headerSplitter[++j];
-            }
-            received_spf[len-1] += "<br>";
         }
         if(headerSplitter[j].includes("Date:") && headerSplitter[j].indexOf("Date:") == 0){
             date.push(headerSplitter[j]);
@@ -56,7 +49,6 @@ function parser(){
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 date[len-1] += headerSplitter[++j];
             }
-            date[len-1] += "<br>";
         }
         if(headerSplitter[j].includes("Subject:") && headerSplitter[j].indexOf("Subject:") == 0){
             subject.push(headerSplitter[j]);
@@ -64,7 +56,6 @@ function parser(){
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 subject[len-1] += headerSplitter[++j];
             }
-            subject[len-1] += "<br>";
         }
         if(headerSplitter[j].includes("Cc:") && headerSplitter[j].indexOf("Cc:") == 0){
             cc.push(headerSplitter[j]);
@@ -72,7 +63,6 @@ function parser(){
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 cc[len-1] += headerSplitter[++j];
             }
-            cc[len-1] += "<br>";
         }
         if(headerSplitter[j].includes("To:") && headerSplitter[j].indexOf("To:") == 0){
             to.push(headerSplitter[j]);
@@ -80,27 +70,61 @@ function parser(){
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 to[len-1] += headerSplitter[++j];
             }
-            to[len-1] += "<br>";
         }
     }
     // Sets the result obtained in the respectetive span
-    document.getElementById("deliveredTo").innerHTML = deliveredTo;
-    document.getElementById("from").innerHTML = from;
-    document.getElementById("received").innerHTML = received;
-    document.getElementById("x-received").innerHTML = x_received;
-    document.getElementById("receivedSPF").innerHTML = received_spf;
-    document.getElementById("date").innerHTML = date;
-    document.getElementById("subject").innerHTML = subject;
+    document.getElementById("deliveredTo").innerHTML = getDeliverToAndDateAndSubject(deliveredTo, "Delivered-To:");
+    document.getElementById("from").innerHTML = getFrom(from);
+    //document.getElementById("received").innerHTML = received;
+    //document.getElementById("x-received").innerHTML = x_received;
+    //document.getElementById("date").innerHTML = date;
+    document.getElementById("subject").innerHTML = getDeliverToAndDateAndSubject(subject, "Subject:");
     document.getElementById("cc").innerHTML = cc;
-    document.getElementById("to").innerHTML = to;
+    document.getElementById("to").innerHTML = getToCC(to, "To:");
     // Changes display of #parse-result to "block"
     document.getElementById("parse-result").style.display = "block";
 
-    getReceived(received[0]);
-    getDateEmail(date);
-    getDeliverTo(deliveredTo);
-    getFrom(from);
-    getTo(to);
+    received_table =  document.getElementById("received-table");
+
+    for(j = 0;  j < received.length; j++) {
+       aux = getReceived(received[j]);
+       tableRef = received_table.getElementsByTagName('tbody')[0];
+
+        // Insert a row in the table at the last row
+        newRow   = tableRef.insertRow(j);
+
+        // Insert a cell in the row at index 0
+        var newCell  = newRow.insertCell(0);
+
+        // Append a text node to the cell
+        var newText  = document.createTextNode(aux[0][0]);
+        newCell.appendChild(newText);
+
+        newCell  = newRow.insertCell(1);
+
+        // Append a text node to the cell
+        newText  = document.createTextNode(aux[1]);
+        newCell.appendChild(newText);
+
+         newCell  = newRow.insertCell(2);
+
+        // Append a text node to the cell
+        newText  = document.createTextNode(aux[2]);
+        newCell.appendChild(newText);
+
+         newCell  = newRow.insertCell(3);
+
+        // Append a text node to the cell
+        newText  = document.createTextNode(aux[3]);
+        newCell.appendChild(newText);
+    }
+
+    //console.log(getDeliverToAndDateAndSubject(deliveredTo, "Delivered-To:"));
+    //console.log(getFrom(from));
+    //console.log(getDeliverToAndDateAndSubject(date, "Date:"));
+    //console.log(getToCC(to, "To:"));
+    //console.log(getToCC(cc, "Cc:"));
+    //console.log(getDeliverToAndDateAndSubject(subject, "Subject:"));
 }
 
 function indexOfFields(headerLine) {
@@ -119,9 +143,10 @@ function indexOfFields(headerLine) {
 
 function getReceived(received) {
     var receivedSplited = received.split(" ");
+    console.log(receivedSplited);
     var i, j;
     var keyWords = ["from", "by", "with"];
-    var aux_from = new Array(), aux_by = new Array(), aux_with = new Array(), aux_date = new Array();
+    var res = new Array(), aux_from = new Array(), aux_by = new Array(), aux_with = new Array(), aux_date = new Array();
     for(i = 0; i < receivedSplited.length; i++) {
         if(receivedSplited[i].includes("from")) {
             // Get DNS
@@ -147,12 +172,14 @@ function getReceived(received) {
     }
     receivedSplited = received.split(";");
     aux_date = receivedSplited[receivedSplited.length-1];
-    console.log("Received: \nFrom:" + aux_from + "\nBy:" + aux_by + "\nWith:" + aux_with + "\nDate:" + aux_date);
+    res.push(aux_by, aux_from, aux_with, aux_date);
+    return res;
+
 }
 
-function getDeliverTo(deliveredTo){
-    var email = deliveredTo[0].split(":");
-    console.log(email[1]);
+function getDeliverToAndDateAndSubject(array, string){
+    var aux = array[0].split(string);
+    return aux[1];
 }
 
 function getFrom(from){
@@ -167,17 +194,24 @@ function getFrom(from){
     }
     email = email.replace('<',' ');
     email = email.replace('>', ' ');
-    console.log(email);
+    return email;
 }
 
-function getDateEmail(date){
-    var dt = date[0].split("Date:");
-    console.log(dt[1]);
-}
+function getToCC(to, stringtoFind){
+    var aux = to[0].split(stringtoFind);
+    if(aux[1].includes("@")){
+        return aux[1];
+    }
+    else{
+        aux = aux[1].split(",");
+    var i,k;
+    for(i = 0; i < aux.length; i++){
+        k = aux[i].indexOf('<');
+        aux[i] = aux[i].substr(k, aux[i].length);
+        aux[i] = aux[i].replace('<',' ');
+        aux[i] = aux[i].replace('>',' ');
+    }
+    return aux;
+    }
 
-function getTo(to){
-    var aux = to[0].split(";");
-    var i;
-    for(i = 0; i < aux.length; i++)
-        console.log(aux[i]);
 }

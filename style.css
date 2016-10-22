@@ -29,10 +29,28 @@ button {
     font-weight: bold;
 }
 
-h1, p, span {
+body {
     font-family: "Arial";
 }
 
 #parse-result {
     display: none;
+}
+
+#received-table {
+    margin-top: 30px;
+}
+
+table {
+    border: 1px black;
+
+}
+
+td, tr {
+    border-style: solid;
+}
+
+thead {
+    text-align: center;
+    font-weight: bold;
 }
