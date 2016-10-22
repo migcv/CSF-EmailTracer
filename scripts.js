@@ -4,7 +4,7 @@ function parser(){
     // Splits the header by '\n'
     var headerSplitter = emailHeader.split("\n");
     // Auxiliar variables
-    var j;
+    var j, len;
     // Array to store information of each field that matters
     var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(), receivedSPF = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array();
 
@@ -12,8 +12,9 @@ function parser(){
 
         if(headerSplitter[j].includes("Delivered-To:") && headerSplitter[j].indexOf("Delivered-To:") == 0){
             deliveredTo.push(headerSplitter[j] + "<br>");
+            len = deliveredTo.length;
             while(indexOfFields(headerSplitter[j+1]) != 0) {
-                deliveredTo.push(headerSplitter[++j]+ "<br>");
+                deliveredTo[len-1] += headerSplitter[++j]+ "<br>";
             }
         }
         if(headerSplitter[j].includes("From:") && headerSplitter[j].indexOf("From:") == 0){
@@ -24,8 +25,9 @@ function parser(){
         }
         if(headerSplitter[j].includes("Received:") && headerSplitter[j].indexOf("Received:") == 0){
             received.push(headerSplitter[j] + "<br>");
+            len = received.length;
             while(indexOfFields(headerSplitter[j+1]) != 0) {
-                received.push(headerSplitter[++j]+ "<br>");
+                received[len-1] += headerSplitter[++j]+ "<br>";
             }
         }
         if(headerSplitter[j].includes("X-Received:") && headerSplitter[j].indexOf("X-Received:") == 0){
@@ -61,7 +63,7 @@ function parser(){
     }
     // Sets the result obtained in the respectetive span
     document.getElementById("deliveredTo").innerHTML = deliveredTo;
-    document.getElementById("from").innerHTML = replaceTags(from);
+    document.getElementById("from").innerHTML = from;
     document.getElementById("received").innerHTML = received;
     document.getElementById("x-received").innerHTML = x_received;
     document.getElementById("receivedSPF").innerHTML = receivedSPF;
@@ -82,4 +84,8 @@ function indexOfFields(headerLine) {
         }
     }
     return -1;
+}
+
+function analyzeReceived() {
+
 }
