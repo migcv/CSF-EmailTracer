@@ -96,6 +96,7 @@ function parser(){
     // Changes display of #parse-result to "block"
     document.getElementById("parse-result").style.display = "block";
 
+    getReceived(received[0]);
     getDateEmail(date);
     getDeliverTo(deliveredTo);
     getFrom(from);
@@ -114,6 +115,39 @@ function indexOfFields(headerLine) {
         }
     }
     return -1;
+}
+
+function getReceived(received) {
+    var receivedSplited = received.split(" ");
+    var i, j;
+    var keyWords = ["from", "by", "with"];
+    var aux_from = new Array(), aux_by = new Array(), aux_with = new Array(), aux_date = new Array();
+    for(i = 0; i < receivedSplited.length; i++) {
+        if(receivedSplited[i].includes("from")) {
+            // Get DNS
+            aux_from.push(receivedSplited[++i]);
+            // Get IP
+            if(!aux_from[0].includes("localhost")) {
+                for(; receivedSplited[i].indexOf("[") < 0; i++);
+                var i_first = receivedSplited[i].indexOf("["), i_last = receivedSplited[i].indexOf("]");
+                var ip = new String();
+                for(j = i_first + 1; j < i_last; j++) {
+                    ip += receivedSplited[i].charAt(j);
+                }
+                aux_from.push(ip);
+            }
+        }
+        if(receivedSplited[i].includes("by")) {
+            // Get DNS
+            aux_by.push(receivedSplited[++i]);
+        }
+        if(receivedSplited[i].includes("with")) {
+            aux_with.push(receivedSplited[++i]);
+        }
+    }
+    receivedSplited = received.split(";");
+    aux_date = receivedSplited[receivedSplited.length-1];
+    console.log("Received: \nFrom:" + aux_from + "\nBy:" + aux_by + "\nWith:" + aux_with + "\nDate:" + aux_date);
 }
 
 function getDeliverTo(deliveredTo){
