@@ -71,6 +71,9 @@ function parser(){
     document.getElementById("to").innerHTML = to;
     // Changes display of #parse-result to "block"
     document.getElementById("parse-result").style.display = "block";
+
+    getReceiverEmail(deliveredTo);
+    getSenderEmail(from);
 }
 
 function indexOfFields(headerLine) {
@@ -82,4 +85,25 @@ function indexOfFields(headerLine) {
         }
     }
     return -1;
+}
+
+
+function getReceiverEmail(deliveredTo){
+    var email = deliveredTo[0].split(":");
+    console.log(email[1]);
+}
+
+function getSenderEmail(from){
+    var aux = from[0].split(":");
+    var aux1 = aux[1].split(" ");
+    var i, email;
+    for(i = 0; i < aux1.length ; i++){
+        if(aux1[i].includes("@")){
+            email = aux1[i];
+            break;
+        }    
+    }
+    email = email.replace('<',' ');
+    email = email.replace('>', ' ');
+    console.log(email);
 }
