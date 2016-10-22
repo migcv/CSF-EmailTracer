@@ -61,7 +61,7 @@ function parser(){
     }
     // Sets the result obtained in the respectetive span
     document.getElementById("deliveredTo").innerHTML = deliveredTo;
-    document.getElementById("from").innerHTML = from;
+    document.getElementById("from").innerHTML = replaceTags(from);
     document.getElementById("received").innerHTML = received;
     document.getElementById("x-received").innerHTML = x_received;
     document.getElementById("receivedSPF").innerHTML = receivedSPF;
@@ -75,7 +75,7 @@ function parser(){
 
 function indexOfFields(headerLine) {
     var i;
-    var headerFields = ["Received", "Delivered-To", "X-Received", "Received-SPF", "DKIM-Signature", "Return-Path", "Authentication-Results", "Date", "From", "Reply-To", "Message-ID", "Subject", "MIME-Version", "Content-Type", "To"];
+    var headerFields = ["Received", "Delivered-To", "X-Received", "Received-SPF", "DKIM-Signature", "Return-Path", "Authentication-Results", "Date", "From", "Reply-To", "Message-ID", "Subject", "MIME-Version", "Content-Type", "To", "X-Virus-Scanned", "Content-Transfer-Encoding", "X-Sender", "User-Agent", "In-Reply-To", "X-Mailer", "References", "Cc", "X-MSFBL", "Content-Language", "X-Priority", "Disposition-Notification-To"];
     for(i = 0; i < headerFields.length; i++) {
         if(headerLine.includes(headerFields[i]) && headerLine.indexOf(headerFields[i]) == 0) {
             return 0;
