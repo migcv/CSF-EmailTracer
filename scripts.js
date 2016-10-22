@@ -98,11 +98,15 @@ function parser(){
 
     getReceiverEmail(deliveredTo);
     getSenderEmail(from);
+    getDateEmail(date);
 }
 
 function indexOfFields(headerLine) {
     var i;
-    var headerFields = ["Received", "Delivered-To", "X-Received", "Received-SPF", "DKIM-Signature", "Return-Path", "Authentication-Results", "Date", "From", "Reply-To", "Message-ID", "Subject", "MIME-Version", "Content-Type", "To", "X-Virus-Scanned", "Content-Transfer-Encoding", "X-Sender", "User-Agent", "In-Reply-To", "X-Mailer", "References", "Cc", "X-MSFBL", "Content-Language", "X-Priority", "Disposition-Notification-To"];
+    var headerFields = ["Received", "Delivered-To", "X-Received", "Received-SPF", "DKIM-Signature", "Return-Path",
+    "Authentication-Results", "Date", "From", "Reply-To", "Message-ID", "Subject", "MIME-Version", "Content-Type",
+    "To", "X-Virus-Scanned", "Content-Transfer-Encoding", "X-Sender", "User-Agent", "In-Reply-To", "X-Mailer",
+    "References", "Cc", "X-MSFBL", "Content-Language", "X-Priority", "Disposition-Notification-To"];
     for(i = 0; i < headerFields.length; i++) {
         if(headerLine.includes(headerFields[i]) && headerLine.indexOf(headerFields[i]) == 0) {
             return 0;
@@ -129,4 +133,10 @@ function getSenderEmail(from){
     email = email.replace('<',' ');
     email = email.replace('>', ' ');
     console.log(email);
+}
+
+function getDateEmail (date) {
+    var dt = date[0].split("Date:");
+    console.log(dt[1]);
+    console.log(dt[0]);
 }
