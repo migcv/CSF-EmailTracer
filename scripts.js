@@ -10,55 +10,49 @@ function parser(){
 
     for(j = 0; j < headerSplitter.length; j++) {
 
-        if(headerSplitter[j].includes("Delivered-To") && headerSplitter[j].indexOf("Delivered-To") == 0){
+        if(headerSplitter[j].includes("Delivered-To:") && headerSplitter[j].indexOf("Delivered-To:") == 0){
             deliveredTo.push(headerSplitter[j] + "<br>");
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 deliveredTo.push(headerSplitter[++j]+ "<br>");
             }
         }
-        if(headerSplitter[j].includes("From") && headerSplitter[j].indexOf("From") == 0){
+        if(headerSplitter[j].includes("From:") && headerSplitter[j].indexOf("From:") == 0){
             from.push(headerSplitter[j] + "<br>");
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 from.push(headerSplitter[++j]+ "<br>");
             }
         }
-        if(headerSplitter[j].includes("Received") && headerSplitter[j].indexOf("Received") == 0){
+        if(headerSplitter[j].includes("Received:") && headerSplitter[j].indexOf("Received:") == 0){
             received.push(headerSplitter[j] + "<br>");
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 received.push(headerSplitter[++j]+ "<br>");
             }
         }
-        if(headerSplitter[j].includes("X-Received") && headerSplitter[j].indexOf("X-Received") == 0){
+        if(headerSplitter[j].includes("X-Received:") && headerSplitter[j].indexOf("X-Received:") == 0){
             x_received.push(headerSplitter[j]);
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 x_received.push(headerSplitter[++j]+ "<br>");
             }
         }
-        if(headerSplitter[j].includes("Received-SPF") && headerSplitter[j].indexOf("Received-SPF") == 0){
-            receivedSPF.push(headerSplitter[j]);
-            while(indexOfFields(headerSplitter[j+1]) != 0) {
-                receivedSPF.push(headerSplitter[++j]+ "<br>");
-            }
-        }
-        if(headerSplitter[j].includes("Date") && headerSplitter[j].indexOf("Date") == 0){
+        if(headerSplitter[j].includes("Date:") && headerSplitter[j].indexOf("Date:") == 0){
             date.push(headerSplitter[j]);
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 date.push(headerSplitter[++j]+ "<br>");
             }
         }
-        if(headerSplitter[j].includes("Subject") && headerSplitter[j].indexOf("Subject") == 0){
+        if(headerSplitter[j].includes("Subject:") && headerSplitter[j].indexOf("Subject:") == 0){
             subject.push(headerSplitter[j]);
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 subject.push(headerSplitter[++j]+ "<br>");
             }
         }
-        if(headerSplitter[j].includes("Cc") && headerSplitter[j].indexOf("Cc") == 0){
+        if(headerSplitter[j].includes("Cc:") && headerSplitter[j].indexOf("Cc:") == 0){
             cc.push(headerSplitter[j]);
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 cc.push(headerSplitter[++j]+ "<br>");
             }
         }
-        if(headerSplitter[j].includes("To") && headerSplitter[j].indexOf("To") == 0){
+        if(headerSplitter[j].includes("To:") && headerSplitter[j].indexOf("To:") == 0){
             to.push(headerSplitter[j]);
             while(indexOfFields(headerSplitter[j+1]) != 0) {
                 to.push(headerSplitter[++j]+ "<br>");
@@ -83,7 +77,7 @@ function indexOfFields(headerLine) {
     var i;
     var headerFields = ["Received", "Delivered-To", "X-Received", "Received-SPF", "DKIM-Signature", "Return-Path", "Authentication-Results", "Date", "From", "Reply-To", "Message-ID", "Subject", "MIME-Version", "Content-Type", "To"];
     for(i = 0; i < headerFields.length; i++) {
-        if(headerLine.indexOf(headerFields[i]) == 0) {
+        if(headerLine.includes(headerFields[i]) && headerLine.indexOf(headerFields[i]) == 0) {
             return 0;
         }
     }
