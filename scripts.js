@@ -79,7 +79,7 @@ function parser(){
     //document.getElementById("x-received").innerHTML = x_received;
     //document.getElementById("date").innerHTML = date;
     document.getElementById("subject").innerHTML = getDeliverToAndDateAndSubject(subject, "Subject:");
-    document.getElementById("cc").innerHTML = cc;
+    document.getElementById("cc").innerHTML = getToCC(cc, "Cc:");
     document.getElementById("to").innerHTML = getToCC(to, "To:");
     // Changes display of #parse-result to "block"
     document.getElementById("parse-result").style.display = "block";
@@ -198,8 +198,9 @@ function getFrom(from){
 }
 
 function getToCC(to, stringtoFind){
+    if(to.length <= 0) return;
     var aux = to[0].split(stringtoFind);
-    if(aux[1].includes("@")){
+    if(!aux[1].includes("<")){
         return aux[1];
     }
     else{
