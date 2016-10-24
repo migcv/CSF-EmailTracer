@@ -4,7 +4,7 @@ function parser(){
     // Splits the header by '\n'
     var headerSplitter = emailHeader.split("\n");
     // Auxiliar variables
-    var j, len;
+    var i, j, len;
     // Array to store information of each field that matters
     var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(), received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array();
 
@@ -85,6 +85,15 @@ function parser(){
     document.getElementById("parse-result").style.display = "block";
 
     received_table =  document.getElementById("received-table");
+    received_table.style.display = "block";
+
+    /*tableRef = received_table.getElementsByTagName('tbody')[0];
+    len = tableRef.rows.length;
+    alert(len);
+    for(i = 0;  i < len*2; i++) {
+        tableRef.deleteRow(i);
+        alert(i + ":" + len);
+    }*/
 
     for(j = 0;  j < received.length; j++) {
        aux = getReceived(received[j]);

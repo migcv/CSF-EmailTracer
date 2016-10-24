@@ -3,12 +3,15 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+    font-family: "Arial";
 }
 
 h1 {
     text-align: center;
 }
-
+/************************
+ *  EMAIL-HEADER-INPUT  *
+ ************************/
 #email-header-input textarea  {
     height: 300px;
     resize: none;
@@ -23,34 +26,39 @@ button {
     width: 20%;
     height: 30px;
 }
-
-.email-fields {
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-body {
-    font-family: "Arial";
-}
-
-#parse-result {
+/************************
+ *  RECEIVED-TABLE      *
+ ************************/
+#received-table {
+    margin-top: 15px;
     display: none;
 }
 
-#received-table {
-    margin-top: 30px;
-}
-
 table {
-    border: 1px black;
-
+    border-collapse: collapse;
 }
 
-td, tr {
-    border-style: solid;
+table, thead, td {
+    border: 3px solid black;
+}
+
+thead, td {
+    padding: 10px;
+    text-align: left;
 }
 
 thead {
     text-align: center;
+    font-weight: bold;
+}
+/************************
+ *  PARSE-RESULTS       *
+ ************************/
+#parse-result {
+    display: none;
+}
+
+.email-fields {
+    text-transform: uppercase;
     font-weight: bold;
 }
