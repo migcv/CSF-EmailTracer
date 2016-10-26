@@ -95,12 +95,21 @@ function parser(){
         alert(i + ":" + len);
     }*/
 
+
+    tableRef = received_table.getElementsByTagName('tbody')[0];
+    var rowsRef = tableRef.getElementsByTagName("tr");
     for(j = 0;  j < received.length; j++) {
-       aux = getReceived(received[j]);
-       tableRef = received_table.getElementsByTagName('tbody')[0];
+        aux = getReceived(received[j]);
 
         // Insert a row in the table at the last row
-        newRow   = tableRef.insertRow(j);
+
+        if(rowsRef[j] != undefined) {
+            tableRef.deleteRow(j);
+            newRow = tableRef.insertRow(j);
+        }
+        else {
+            newRow = tableRef.insertRow(j);
+        }
 
         // Insert a cell in the row at index 0
         var newCell  = newRow.insertCell(0);
@@ -138,10 +147,10 @@ function parser(){
 
 function indexOfFields(headerLine) {
     var i;
-    var headerFields = ["Received", "Delivered-To", "X-Received", "Received-SPF", "DKIM-Signature", "Return-Path",
-    "Authentication-Results", "Date", "From", "Reply-To", "Message-ID", "Subject", "MIME-Version", "Content-Type",
-    "To", "X-Virus-Scanned", "Content-Transfer-Encoding", "X-Sender", "User-Agent", "In-Reply-To", "X-Mailer",
-    "References", "Cc", "X-MSFBL", "Content-Language", "X-Priority", "Disposition-Notification-To"];
+    var headerFields = ["Received:", "Delivered-To:", "X-Received:", "Received-SPF:", "DKIM-Signature:", "Return-Path:",
+    "Authentication-Results:", "Date:", "From:", "Reply-To:", "Message-ID:", "Message-Id:", "Subject:", "MIME-Version:", "Content-Type:",
+    "To:", "X-Virus-Scanned:", "Content-Transfer-Encoding:", "X-Sender", "User-Agent", "In-Reply-To", "X-Mailer",
+    "References", "Cc", "X-MSFBL", "Content-Language", "X-Priority", "Disposition-Notification-To", "X-wrimid", "X-OriginalArrivalTime", "X-Report-Abuse", "X-SMTPCOM-Tracking-Number", "X-SMTPCOM-Sender-ID", "Feedback-ID", "DomainKey-Signature", "X-CSA-Complaints", "List-ID", "x-job", "Return-Receipt-To", "X-Spam-Flag", "X-Spam-Score", "X-Spam-Level", "X-Spam-Status", "X-Mailgun-Sid", "X-Auto-Response-Suppress", "X-PHP-Originating-Script", "X-Gmail-Original-Message-ID", "X-AntiAbuse", "X-Get-Message-Sender-Via:", "X-Authenticated-Sender:"];
     for(i = 0; i < headerFields.length; i++) {
         if(headerLine.includes(headerFields[i]) && headerLine.indexOf(headerFields[i]) == 0) {
             return 0;
