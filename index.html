@@ -14,6 +14,28 @@
         <textarea id="email-header" placeholder="Insert email header here"></textarea>
         <button onclick="parser()">Track!</button>
     </section>
+    <section id="parse-result">
+        <p>
+            <span class="email-fields">Delivered-To: </span>
+            <span id="deliveredTo"></span>
+        </p>
+        <p>
+            <span class="email-fields">From: </span>
+            <span id="from"></span>
+        </p>
+        <p>
+            <span class="email-fields">Subject: </span>
+            <span id="subject"></span>
+        </p>
+        <p id="cc-p">
+            <span class="email-fields">Cc: </span>
+            <span id="cc"></span>
+        </p>
+        <p id="to-p">
+            <span class="email-fields">To: </span>
+            <span id="to"></span>
+        </p>
+    </section>
     <section id="received-table">
         <table style="width:100%">
             <thead>
@@ -27,28 +49,6 @@
             <tbody>
             </tbody>
         </table>
-    </section>
-    <section id="parse-result">
-        <p>
-            <span class="email-fields">Delivered-To:<br></span>
-            <span id="deliveredTo"></span>
-        </p>
-        <p>
-            <span class="email-fields">From:<br></span>
-            <span id="from"></span>
-        </p>
-        <p>
-            <span class="email-fields">Subject:<br></span>
-            <span id="subject"></span>
-        </p>
-        <p>
-            <span class="email-fields">Cc:<br></span>
-            <span id="cc"></span>
-        </p>
-        <p>
-            <span class="email-fields">To:<br></span>
-            <span id="to"></span>
-        </p>
     </section>
 
     <script src="scripts.js"></script>

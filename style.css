@@ -54,7 +54,7 @@ thead {
 /************************
  *  PARSE-RESULTS       *
  ************************/
-#parse-result {
+#parse-result, cc-p, to-p {
     display: none;
 }
 

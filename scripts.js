@@ -1,3 +1,6 @@
+// Array to store information of each field that matters
+var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(), received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array();
+
 function parser(){
     // Gets the email header given by the user
     var emailHeader = document.getElementById("email-header").value;
@@ -5,8 +8,6 @@ function parser(){
     var headerSplitter = emailHeader.split("\n");
     // Auxiliar variables
     var i, j, len;
-    // Array to store information of each field that matters
-    var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(), received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array();
 
     var tableRef = undefined;
     var newRow = undefined;
@@ -44,10 +45,10 @@ function parser(){
             }
         }
         if(headerSplitter[j].includes("Received-SPF:") && headerSplitter[j].indexOf("Received-SPF:") == 0){
-            received.push(headerSplitter[j]);
-            len = received.length;
+            received_spf.push(headerSplitter[j]);
+            len = received_spf.length;
             while(indexOfFields(headerSplitter[j+1]) != 0) {
-                received[len-1] += headerSplitter[++j];
+                received_spf[len-1] += headerSplitter[++j];
             }
         }
         if(headerSplitter[j].includes("Date:") && headerSplitter[j].indexOf("Date:") == 0){
@@ -82,74 +83,110 @@ function parser(){
     // Sets the result obtained in the respectetive span
     document.getElementById("deliveredTo").innerHTML = getDeliverToAndDateAndSubject(deliveredTo, "Delivered-To:");
     document.getElementById("from").innerHTML = getFrom(from);
-    //document.getElementById("received").innerHTML = received;
-    //document.getElementById("x-received").innerHTML = x_received;
-    //document.getElementById("date").innerHTML = date;
     document.getElementById("subject").innerHTML = getDeliverToAndDateAndSubject(subject, "Subject:");
-    document.getElementById("cc").innerHTML = getToCC(cc, "Cc:");
-    document.getElementById("to").innerHTML = getToCC(to, "To:");
+    if(getToCC(cc, "Cc:") != undefined) {
+        document.getElementById("cc-p").style.display = "block";
+        document.getElementById("cc").innerHTML = getToCC(cc, "Cc:");
+    }
+    if(getToCC(to, "To:") != undefined) {
+        document.getElementById("to-p").style.display = "block";
+        document.getElementById("to").innerHTML = getToCC(to, "To:");
+    }
     // Changes display of #parse-result to "block"
     document.getElementById("parse-result").style.display = "block";
 
     received_table =  document.getElementById("received-table");
     received_table.style.display = "block";
 
-    /*tableRef = received_table.getElementsByTagName('tbody')[0];
-    len = tableRef.rows.length;
-    alert(len);
-    for(i = 0;  i < len*2; i++) {
-        tableRef.deleteRow(i);
-        alert(i + ":" + len);
-    }*/
-
-
     tableRef = received_table.getElementsByTagName('tbody')[0];
     var rowsRef = tableRef.getElementsByTagName("tr");
+
+    aux = getReceived(received[0]);
+
+    if(rowsRef[j] != undefined) { // Remove row if exists
+        tableRef.deleteRow(0);
+        newRow = tableRef.insertRow(0);
+    }
+    else { // Creates row if existes
+        newRow = tableRef.insertRow(0);
+    }
+
+    // Insert a cell RECEIVED-BY
+    var newCell  = newRow.insertCell(0);
+    var newText  = document.createTextNode(getDeliverToAndDateAndSubject(deliveredTo, "Delivered-To:"));
+    newCell.appendChild(newText);
+
+    // Insert a cell RECEIVED-FROM
+    newCell  = newRow.insertCell(1);
+    newText  = document.createTextNode(aux[0]);
+    newCell.appendChild(newText);
+
+    // Insert a cell PROTOCOL
+    newCell  = newRow.insertCell(2);
+    newText  = document.createTextNode("---");
+    newCell.appendChild(newText);
+
+    // Insert a cell DATE
+    newCell  = newRow.insertCell(3);
+     newText  = document.createTextNode("---");
+    newCell.appendChild(newText);
+
     for(j = 0;  j < received.length; j++) {
         aux = getReceived(received[j]);
 
-        // Insert a row in the table at the last row
-
-        if(rowsRef[j] != undefined) {
-            tableRef.deleteRow(j);
-            newRow = tableRef.insertRow(j);
+        if(rowsRef[j+1] != undefined) { // Remove row if exists DONT WORK VERY GOOD
+            tableRef.deleteRow(j+1);
+            newRow = tableRef.insertRow(j+1);
         }
-        else {
-            newRow = tableRef.insertRow(j);
+        else { // Creates row if existes
+            newRow = tableRef.insertRow(j+1);
         }
 
-        // Insert a cell in the row at index 0
+        // Insert a cell RECEIVED-BY
         var newCell  = newRow.insertCell(0);
-
-        // Append a text node to the cell
         var newText  = document.createTextNode(aux[0][0]);
         newCell.appendChild(newText);
 
+        // Insert a cell RECEIVED-FROM
         newCell  = newRow.insertCell(1);
-
-        // Append a text node to the cell
         newText  = document.createTextNode(aux[1]);
         newCell.appendChild(newText);
 
-         newCell  = newRow.insertCell(2);
-
-        // Append a text node to the cell
+        // Insert a cell PROTOCOL
+        newCell  = newRow.insertCell(2);
         newText  = document.createTextNode(aux[2]);
         newCell.appendChild(newText);
 
-         newCell  = newRow.insertCell(3);
-
-        // Append a text node to the cell
+        // Insert a cell DATE
+        newCell  = newRow.insertCell(3);
         newText  = document.createTextNode(aux[3]);
         newCell.appendChild(newText);
     }
 
-    //console.log(getDeliverToAndDateAndSubject(deliveredTo, "Delivered-To:"));
-    //console.log(getFrom(from));
-    //console.log(getDeliverToAndDateAndSubject(date, "Date:"));
-    //console.log(getToCC(to, "To:"));
-    //console.log(getToCC(cc, "Cc:"));
-    //console.log(getDeliverToAndDateAndSubject(subject, "Subject:"));
+    aux = getReceived(received[received.length-1]);
+
+    newRow = tableRef.insertRow(received.length+1);
+
+    // Insert a cell RECEIVED-BY
+    var newCell  = newRow.insertCell(0);
+    var newText  = document.createTextNode(aux[1]);
+    newCell.appendChild(newText);
+
+    // Insert a cell RECEIVED-FROM
+    newCell  = newRow.insertCell(1);
+    newText  = document.createTextNode(getFrom(from));
+    newCell.appendChild(newText);
+
+    // Insert a cell PROTOCOL
+    newCell  = newRow.insertCell(2);
+    newText  = document.createTextNode("---");
+    newCell.appendChild(newText);
+
+    // Insert a cell DATE
+    newCell  = newRow.insertCell(3);
+     newText  = document.createTextNode(date[0].split("Date:")[1]);
+    newCell.appendChild(newText);
+
 }
 
 function indexOfFields(headerLine) {
@@ -168,7 +205,6 @@ function indexOfFields(headerLine) {
 
 function getReceived(received) {
     var receivedSplited = received.split(" ");
-    console.log(receivedSplited);
     var i, j;
     var keyWords = ["from", "by", "with"];
     var res = new Array(), aux_from = new Array(), aux_by = new Array(), aux_with = new Array(), aux_date = new Array();
@@ -181,7 +217,7 @@ function getReceived(received) {
                 for(; receivedSplited[i].indexOf("[") < 0; i++);
                 var i_first = receivedSplited[i].indexOf("["), i_last = receivedSplited[i].indexOf("]");
                 var ip = new String();
-                for(j = i_first + 1; j < i_last; j++) {
+                for(j = i_first; j < i_last+1; j++) {
                     ip += receivedSplited[i].charAt(j);
                 }
                 aux_from.push(ip);
@@ -200,6 +236,11 @@ function getReceived(received) {
     res.push(aux_by, aux_from, aux_with, aux_date);
     return res;
 
+}
+// NOT USED....YET........
+function getReceivedSPF(receivedSPF) {
+    var splited = receivedSPF[0].split("=");
+    return splited[1].split(";")[0];
 }
 
 function getDeliverToAndDateAndSubject(array, string){
