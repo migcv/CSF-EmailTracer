@@ -15,7 +15,7 @@
     <h1>Email Location Tracker</h1>
     <section id="email-header-input">
         <textarea id="email-header" placeholder="Insert email header here"></textarea>
-        <button onclick="parser()">Track!</button>
+        <button onclick="parser()">TRACK!</button>
     </section>
     <section id="parse-result">
         <p>
@@ -47,6 +47,24 @@
                     <td>RECEIVER (Received-by)</td>
                     <td>PROTOCOL</td>
                     <td>DATE</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </section>
+    <section id="ip-table">
+        <table id="myTable" style="width:100%">
+            <thead>
+                <tr>
+                    <td>IP</td>
+                    <td>DOMAIN</td>
+                    <td>ORGANIZATION</td>
+                    <td>LATITUDE</td>
+                    <td>LONGITUDE</td>
+                    <td>CITY</td>
+                    <td>COUNTRY</td>
+                    <td>ISP</td>
                 </tr>
             </thead>
             <tbody>

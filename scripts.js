@@ -1,8 +1,8 @@
 // Array to store information of each field that matters
-var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(), received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array();
+var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(), received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array(), ip = new Array();
+var data;
 
 function parser(){
-    getIPinfo("193.136.128.21");
     // Auxiliar variables
     var i, j, len;
     // Gets the email header given by the user
@@ -92,7 +92,9 @@ function parser(){
     document.getElementById("parse-result").style.display = "block";
 
     // Contructs a table with information from the "Received:"
+    console.log(ip);
     receivedTable();
+    ipTable();
 
 }
 
@@ -192,6 +194,57 @@ function receivedTable() {
     received_table.style.display = "block";
 }
 
+function ipTable() {
+    var received_table = document.getElementById("ip-table");
+    var tableRef = received_table.getElementsByTagName('tbody')[0];
+
+    for(j = 0;  j < ip.length; j++) {
+        getIPinfo(ip[j]);
+        newRow = tableRef.insertRow(j);
+
+        // Insert a cell IP
+        newCell  = newRow.insertCell(0);
+        var newText  = document.createTextNode(data.ip);
+        newCell.appendChild(newText);
+        // Insert a cell DOMAIN
+        var newCell  = newRow.insertCell(1);
+        var newText  = document.createTextNode(data.hostname);
+        newCell.appendChild(newText);
+        // Insert a cell ORGANIZATION
+        newCell  = newRow.insertCell(2);
+        newText  = document.createTextNode(data.org);
+        newCell.appendChild(newText);
+        var lat = "---";
+        var log = "---";
+        if(data.loc != undefined) {
+            lat = data.loc.split(",")[0];
+            log = data.loc.split(",")[1];
+        }
+        // Insert a cell LATITUDE
+        newCell  = newRow.insertCell(3);
+        newText  = document.createTextNode(lat);
+        newCell.appendChild(newText);
+        // Insert a cell LONGITUDE
+        newCell  = newRow.insertCell(4);
+        newText  = document.createTextNode(log);
+        newCell.appendChild(newText);
+        // Insert a cell CITY
+        newCell  = newRow.insertCell(5);
+        newText  = document.createTextNode(data.city);
+        newCell.appendChild(newText);
+        // Insert a cell COUNTRY
+        newCell  = newRow.insertCell(6);
+        newText  = document.createTextNode(data.country);
+        newCell.appendChild(newText);
+        // Insert a cell ISP
+        newCell  = newRow.insertCell(7);
+        newText  = document.createTextNode(data.isp);
+        newCell.appendChild(newText);
+    }
+    // Puts table visible
+    received_table.style.display = "block";
+}
+
 function indexOfFields(headerLine) {
     var i;
     var headerFields = ["Received:", "Delivered-To:", "X-Received:", "Received-SPF:", "DKIM-Signature:", "Return-Path:",
@@ -219,11 +272,15 @@ function getReceived(received) {
             if(!aux_from[0].includes("localhost")) {
                 for(; receivedSplited[i].indexOf("[") < 0; i++);
                 var i_first = receivedSplited[i].indexOf("["), i_last = receivedSplited[i].indexOf("]");
-                var ip = new String();
+                var ip_aux = new String();
                 for(j = i_first; j < i_last+1; j++) {
-                    ip += receivedSplited[i].charAt(j);
+                    ip_aux += receivedSplited[i].charAt(j);
                 }
-                aux_from.push(ip);
+                aux_from.push(ip_aux);
+                ip_aux = ip_aux.split("[")[1].split("]")[0];
+                if(ip.indexOf(ip_aux) < 0 && ip_aux != "127.0.0.1")
+                    ip.push(ip_aux);
+
             }
         }
         if(receivedSplited[i].includes("by")) {
@@ -300,13 +357,12 @@ function getIPinfo(ip){
     {
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-            var data = JSON.parse(xmlhttp.responseText);
+            data = JSON.parse(xmlhttp.responseText);
             console.log(data);
         }
     }
     var htt = "http://api.eurekapi.com/iplocation/v1.8/locateip?key=SAK8C9U7N38NH2E4HC2Z&ip="+ ip+"&format=JSON";
     var htt1 = "http://ipinfo.io/"+ip+ "/json";
-    xmlhttp.open("GET", htt ,false);
+    xmlhttp.open("GET", htt1 ,false);
     xmlhttp.send();
-
 }

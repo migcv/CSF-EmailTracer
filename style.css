@@ -39,6 +39,7 @@ button {
     background: #A0BF56;
     border-radius: 8px;
     border: 1px solid black;
+    font-weight: bold;
 }
 /************************
  *  RECEIVED-TABLE      *
@@ -64,6 +65,7 @@ thead, td {
 thead {
     text-align: center;
     font-weight: bold;
+    background-color: #A0BF56;
 }
 /************************
  *  PARSE-RESULTS       *
@@ -75,4 +77,12 @@ thead {
 .email-fields {
     text-transform: uppercase;
     font-weight: bold;
+}
+
+/************************
+ *  RECEIVED-TABLE      *
+ ************************/
+#ip-table {
+    margin-top: 15px;
+    display: none;
 }
