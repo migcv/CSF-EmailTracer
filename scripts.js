@@ -43,6 +43,13 @@ function parser(){
                 x_received[len-1] += headerSplitter[++j];
             }
         }
+        if(headerSplitter[j].includes("Received-SPF:") && headerSplitter[j].indexOf("Received-SPF:") == 0){
+            received.push(headerSplitter[j]);
+            len = received.length;
+            while(indexOfFields(headerSplitter[j+1]) != 0) {
+                received[len-1] += headerSplitter[++j];
+            }
+        }
         if(headerSplitter[j].includes("Date:") && headerSplitter[j].indexOf("Date:") == 0){
             date.push(headerSplitter[j]);
             len = date.length;
