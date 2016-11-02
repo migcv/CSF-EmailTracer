@@ -2,17 +2,13 @@
 var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(), received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array();
 
 function parser(){
+    getIPinfo("193.136.128.21");
+    // Auxiliar variables
+    var i, j, len;
     // Gets the email header given by the user
     var emailHeader = document.getElementById("email-header").value;
     // Splits the header by '\n'
     var headerSplitter = emailHeader.split("\n");
-    // Auxiliar variables
-    var i, j, len;
-
-    var tableRef = undefined;
-    var newRow = undefined;
-    var aux = undefined;
-    var received_table = undefined;
 
     for(j = 0; j < headerSplitter.length; j++) {
 
@@ -95,98 +91,105 @@ function parser(){
     // Changes display of #parse-result to "block"
     document.getElementById("parse-result").style.display = "block";
 
-    received_table =  document.getElementById("received-table");
-    received_table.style.display = "block";
+    // Contructs a table with information from the "Received:"
+    receivedTable();
 
-    tableRef = received_table.getElementsByTagName('tbody')[0];
-    var rowsRef = tableRef.getElementsByTagName("tr");
+}
 
-    aux = getReceived(received[0]);
+function receivedTable() {
+    var received_table = document.getElementById("received-table");
+    var tableRef = received_table.getElementsByTagName('tbody')[0];
 
-    if(rowsRef[j] != undefined) { // Remove row if exists
+    /*var x = document.getElementById("myTable").rows.length;
+    while(document.getElementById("myTable").rows.length > 1) {
+        alert(document.getElementById("myTable").rows.length);
         tableRef.deleteRow(0);
-        newRow = tableRef.insertRow(0);
-    }
-    else { // Creates row if existes
-        newRow = tableRef.insertRow(0);
-    }
+    }*/
 
-    // Insert a cell RECEIVED-BY
-    var newCell  = newRow.insertCell(0);
-    var newText  = document.createTextNode(getDeliverToAndDateAndSubject(deliveredTo, "Delivered-To:"));
-    newCell.appendChild(newText);
+    aux = getReceived(received[received.length-1]);
+    newRow = tableRef.insertRow(0);
 
     // Insert a cell RECEIVED-FROM
-    newCell  = newRow.insertCell(1);
-    newText  = document.createTextNode(aux[0]);
+    newCell  = newRow.insertCell(0);
+    newText  = document.createTextNode(getFrom(from));
     newCell.appendChild(newText);
-
+    // Insert a cell RECEIVED-BY
+    var newCell  = newRow.insertCell(1);
+    if(aux[1] == "") {
+        var newText  = document.createTextNode("---");
+    }
+    else {
+        var newText  = document.createTextNode(aux[1]);
+    }
+    newCell.appendChild(newText);
     // Insert a cell PROTOCOL
     newCell  = newRow.insertCell(2);
     newText  = document.createTextNode("---");
     newCell.appendChild(newText);
-
     // Insert a cell DATE
     newCell  = newRow.insertCell(3);
-     newText  = document.createTextNode("---");
+     newText  = document.createTextNode(date[0].split("Date:")[1]);
     newCell.appendChild(newText);
 
     for(j = 0;  j < received.length; j++) {
-        aux = getReceived(received[j]);
-
-        if(rowsRef[j+1] != undefined) { // Remove row if exists DONT WORK VERY GOOD
-            tableRef.deleteRow(j+1);
-            newRow = tableRef.insertRow(j+1);
-        }
-        else { // Creates row if existes
-            newRow = tableRef.insertRow(j+1);
-        }
-
-        // Insert a cell RECEIVED-BY
-        var newCell  = newRow.insertCell(0);
-        var newText  = document.createTextNode(aux[0][0]);
-        newCell.appendChild(newText);
+        aux = getReceived(received[received.length-j-1]);
+        newRow = tableRef.insertRow(j+1);
 
         // Insert a cell RECEIVED-FROM
-        newCell  = newRow.insertCell(1);
-        newText  = document.createTextNode(aux[1]);
+        newCell  = newRow.insertCell(0);
+        if(aux[1] == "") {
+            var newText  = document.createTextNode("---");
+        }
+        else {
+            var newText  = document.createTextNode(aux[1]);
+        }
         newCell.appendChild(newText);
-
+        // Insert a cell RECEIVED-BY
+        var newCell  = newRow.insertCell(1);
+        if(aux[0] == "") {
+            var newText  = document.createTextNode("---");
+        }
+        else {
+            var newText  = document.createTextNode(aux[0][0]);
+        }
+        newCell.appendChild(newText);
         // Insert a cell PROTOCOL
         newCell  = newRow.insertCell(2);
         newText  = document.createTextNode(aux[2]);
         newCell.appendChild(newText);
-
         // Insert a cell DATE
         newCell  = newRow.insertCell(3);
         newText  = document.createTextNode(aux[3]);
         newCell.appendChild(newText);
     }
 
-    aux = getReceived(received[received.length-1]);
-
-    newRow = tableRef.insertRow(received.length+1);
-
-    // Insert a cell RECEIVED-BY
-    var newCell  = newRow.insertCell(0);
-    var newText  = document.createTextNode(aux[1]);
-    newCell.appendChild(newText);
+    var aux = getReceived(received[0]);
+    var newRow = tableRef.insertRow(received.length+1);
 
     // Insert a cell RECEIVED-FROM
-    newCell  = newRow.insertCell(1);
-    newText  = document.createTextNode(getFrom(from));
+    newCell  = newRow.insertCell(0);
+    if(aux[0] == "") {
+        var newText  = document.createTextNode("---");
+    }
+    else {
+        newText  = document.createTextNode(aux[0]);
+    }
     newCell.appendChild(newText);
-
+    // Insert a cell RECEIVED-BY
+    var newCell  = newRow.insertCell(1);
+    var newText  = document.createTextNode(getDeliverToAndDateAndSubject(deliveredTo, "Delivered-To:"));
+    newCell.appendChild(newText);
     // Insert a cell PROTOCOL
     newCell  = newRow.insertCell(2);
     newText  = document.createTextNode("---");
     newCell.appendChild(newText);
-
     // Insert a cell DATE
     newCell  = newRow.insertCell(3);
-     newText  = document.createTextNode(date[0].split("Date:")[1]);
+     newText  = document.createTextNode("---");
     newCell.appendChild(newText);
 
+    // Puts table visible
+    received_table.style.display = "block";
 }
 
 function indexOfFields(headerLine) {
@@ -280,5 +283,30 @@ function getToCC(to, stringtoFind){
     }
     return aux;
     }
+}
+
+function getIPinfo(ip){
+    //https://www.eurekapi.com/IP-GeoLoc-ip-address-geolocation-locator-lookup-database-software-geography-country-region-state-county-province-city-postal-zip-code-metro-area-code-latitude-longitude@IP-GeoLoc
+    //http://ipinfo.io/developers/specific-fields
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            var data = JSON.parse(xmlhttp.responseText);
+            console.log(data);
+        }
+    }
+    var htt = "http://api.eurekapi.com/iplocation/v1.8/locateip?key=SAK8C9U7N38NH2E4HC2Z&ip="+ ip+"&format=JSON";
+    var htt1 = "http://ipinfo.io/"+ip+ "/json";
+    xmlhttp.open("GET", htt ,false);
+    xmlhttp.send();
 
 }
