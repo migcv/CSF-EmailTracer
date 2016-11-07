@@ -1,0 +1,149 @@
+Delivered-To: dharu.q@gmail.com
+Received: by 10.103.105.137 with SMTP id e131csp621422vsc;
+        Mon, 7 Nov 2016 13:34:14 -0800 (PST)
+X-Received: by 10.25.190.86 with SMTP id o83mr5231519lff.109.1478554453920;
+        Mon, 07 Nov 2016 13:34:13 -0800 (PST)
+Return-Path: <migcviegas@gmail.com>
+Received: from mail-lf0-x230.google.com (mail-lf0-x230.google.com. [2a00:1450:4010:c07::230])
+        by mx.google.com with ESMTPS id f2si7648716lfe.218.2016.11.07.13.34.13
+        for <dharu.q@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 07 Nov 2016 13:34:13 -0800 (PST)
+Received-SPF: pass (google.com: domain of migcviegas@gmail.com designates 2a00:1450:4010:c07::230 as permitted sender) client-ip=2a00:1450:4010:c07::230;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com;
+       spf=pass (google.com: domain of migcviegas@gmail.com designates 2a00:1450:4010:c07::230 as permitted sender) smtp.mailfrom=migcviegas@gmail.com;
+       dmarc=pass (p=NONE dis=NONE) header.from=gmail.com
+Received: by mail-lf0-x230.google.com with SMTP id o141so32731636lff.1
+        for <dharu.q@gmail.com>; Mon, 07 Nov 2016 13:34:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=q/rFn+zetGjynGzoOJ8+itpTQ1Ly/NMw9gzewPHFgwI=;
+        b=rnLvv+rgAZCSaQYoUShP/CrNSa5T2PZczkH0kWH2kjU/shHJC45vGeq24AWwpmPJku
+         VwdbBRsFWVK5EyL/v6JCa9ywXsNpclewoJtAwEQjmc0edwCwuB8z82djNgySY4E/GyhN
+         0QRtDIqslH2m8AYRDaLf2nbQi/lmVniUuycgaCNzYbR8SCLH0HGshsecXJmKhwtkqpOd
+         dceTyEceEYvQKvYsdcHkNrcTj7CRbo+5ake7nUz827V0z/07mEEVt0KcG1g+En2xwH8S
+         2vbV+mwm8B/LH2rP10Lz2bCtgtu40X5IUE5IdGZ5B8oUBmyCKQ7MpKa7dukTuYXDb/9u
+         xUDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=q/rFn+zetGjynGzoOJ8+itpTQ1Ly/NMw9gzewPHFgwI=;
+        b=T8Bdr0Ca5Lx2eIRNkB7BeJaS44l3KgPakTzof1DYRvquDJjPNRxSi4PIPckR0m3yl6
+         ZUCq0L8X1xx76fv5ia79onh+XsWvWWyoBMV3hg31g3CoXZRliQrw+6z1sJu88onoLPXk
+         vQ+IWNFV8RD0IJHoaleOAQSJhgbAZIdtzhaT5+MYsTyQNEV6/H2AoSIcm6FsydjZ1RAM
+         syAjZtjFVCABVrM6rtmqBR+Vn2KSue1u8JRo7boEuHjweyfrke0u59iXp+lSd4pFnBvW
+         mKDJfPydq5rpkOzgOAMGrm+rz6J027fTdzB7vowAYw6mAtPnRvt31k9OqaYsNZ8zEuqE
+         CLig==
+X-Gm-Message-State: ABUngvc+L9DE7K8ERwLchDUaQtMa46rzGasxa6DSkkR08V8zeALaKxI2Ys9rAg3wNrVuEvLf7byf9xhRKZYwHQ==
+X-Received: by 10.25.67.2 with SMTP id q2mr5422791lfa.22.1478554453197; Mon, 07 Nov 2016 13:34:13 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.25.168.208 with HTTP; Mon, 7 Nov 2016 13:34:12 -0800 (PST)
+From: Miguel Viegas <migcviegas@gmail.com>
+Date: Mon, 7 Nov 2016 21:34:12 +0000
+Message-ID: <CADuO6u1pLKgyyJat_bqiQVat95=9Qcq-9Z4vURAQL91gg4n2HQ@mail.gmail.com>
+Subject: CSF - 123 Teste Teste
+To: Dharita Queshil <dharu.q@gmail.com>
+Content-Type: multipart/alternative; boundary=f403045ea338f6c9960540bcc8aa
+
+--f403045ea338f6c9960540bcc8aa
+Content-Type: text/plain; charset=UTF-8
+
+                      .-.
+                     (   )
+                      '-'
+                      J L
+                      | |
+                     J   L
+                     |   |
+                    J     L
+                  .-'.___.'-.
+                 /___________\
+            _.-""'           `bmw._
+          .'                       `.
+        J                            `.
+       F                               L
+      J                                 J
+     J                                  `
+     |                                   L
+     |                                   |
+     |                                   |
+     |                                   J
+     |                                    L
+     |                                    |
+     |             ,.___          ___....--._
+     |           ,'     `""""""""'           `-._
+     |          J           _____________________`-.
+     |         F         .-'   `-88888-'    `Y8888b.`.
+     |         |       .'         `P'         `88888b \
+     |         |      J       #     L      #    q8888b L
+     |         |      |             |           )8888D )
+     |         J      \             J           d8888P P
+     |          L      `.         .b.         ,88888P /
+     |           `.      `-.___,o88888o.___,o88888P'.'
+     |             `-.__________________________..-'
+     |                                    |
+     |         .-----.........____________J
+     |       .' |       |      |       |
+     |      J---|-----..|...___|_______|
+     |      |   |       |      |       |
+     |      Y---|-----..|...___|_______|
+     |       `. |       |      |       |
+     |         `'-------:....__|______.J
+     |                                  |
+      L___                              |
+          """----...______________....--'
+
+--f403045ea338f6c9960540bcc8aa
+Content-Type: text/html; charset=UTF-8
+
+<div dir="ltr"><div><br></div><div><pre style="font-family:&quot;droid sans mono&quot;,&quot;lucida console&quot;,&quot;andale mono&quot;,&quot;courier new&quot;,courier,monospace;font-size:12px;line-height:12px;color:rgb(0,0,0)">                      .-.
+                     (   )
+                      &#39;-&#39;
+                      J L
+                      | |
+                     J   L
+                     |   |
+                    J     L
+                  .-&#39;.___.&#39;-.
+                 /___________\
+            _.-&quot;&quot;&#39;           `bmw._
+          .&#39;                       `.
+        J                            `.
+       F                               L
+      J                                 J
+     J                                  `
+     |                                   L
+     |                                   |
+     |                                   |
+     |                                   J
+     |                                    L
+     |                                    |
+     |             ,.___          ___....--._
+     |           ,&#39;     `&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&#39;           `-._
+     |          J           _____________________`-.
+     |         F         .-&#39;   `-88888-&#39;    `Y8888b.`.
+     |         |       .&#39;         `P&#39;         `88888b \
+     |         |      J       #     L      #    q8888b L
+     |         |      |             |           )8888D )
+     |         J      \             J           d8888P P
+     |          L      `.         .b.         ,88888P /
+     |           `.      `-.___,o88888o.___,o88888P&#39;.&#39;
+     |             `-.__________________________..-&#39;
+     |                                    |
+     |         .-----.........____________J
+     |       .&#39; |       |      |       |
+     |      J---|-----..|...___|_______|
+     |      |   |       |      |       |
+     |      Y---|-----..|...___|_______|
+     |       `. |       |      |       |
+     |         `&#39;-------:....__|______.J
+     |                                  |
+      L___                              |
+          &quot;&quot;&quot;----...______________....--&#39;
+
+
+</pre></div></div>
+
+--f403045ea338f6c9960540bcc8aa--

@@ -1,0 +1,41 @@
+Return-Path: <miguel.viegas@ist.utl.pt>
+Delivered-To: ist175669@mail3-store.ist.utl.pt
+Received: from smtp2.tecnico.ulisboa.pt (smtp2.tecnico.ulisboa.pt [193.136.128.22])
+    by mail3.ist.utl.pt (Postfix) with ESMTP id 69C8480498D1
+    for <ist175669@mail.ist.utl.pt>; Sun, 6 Nov 2016 23:01:09 +0000 (WET)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+    by smtp2.tecnico.ulisboa.pt (Postfix) with ESMTP id D6DC2700038A
+    for <dharita.queshil@tecnico.ulisboa.pt>; Sun, 6 Nov 2016 23:01:08 +0000 (WET)
+X-Virus-Scanned: by amavisd-new-2.10.1 (20141025) (Debian) at ist.utl.pt
+Received: from smtp2.tecnico.ulisboa.pt ([127.0.0.1])
+    by localhost (smtp2.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
+    with LMTP id qK3Lu4DMEx1s for <dharita.queshil@tecnico.ulisboa.pt>;
+    Sun, 6 Nov 2016 23:01:08 +0000 (WET)
+Received: from mail3.ist.utl.pt (mail3.ist.utl.pt [IPv6:2001:690:2100:1::e1dc:b6b6])
+    by smtp2.tecnico.ulisboa.pt (Postfix) with ESMTP id 8F5967000397
+    for <dharita.queshil@tecnico.ulisboa.pt>; Sun, 6 Nov 2016 23:01:08 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ist.utl.pt; s=mail;
+    t=1478473268; bh=VbY0kpqtERPzHhzkS4H8Vxke9/UYFgd4wR9BMzMIux0=;
+    h=Date:From:To:Subject;
+    b=1WLFeyXhS7kNxg/ebpfr8nBvxmyh3z68Zwk941Xk+VLfqQqhU1iYEkRCowTILGO/U
+    DDa9bUwiXLByZnp7hMw83avxAyzXW44URQHJNAD/3VcedoD26pLcHipHVkXQfTIdaN
+    yzd6k8EOB348rfIb2nHqkWOKEypiGrEPY5eofD3E=
+Received: from webmail.tecnico.ulisboa.pt (webmail4.tecnico.ulisboa.pt [IPv6:2001:690:2100:1::8a3:363d])
+    (Authenticated sender: ist176532)
+    by mail3.ist.utl.pt (Postfix) with ESMTPSA id 1671780498C5
+    for <dharita.queshil@tecnico.ulisboa.pt>; Sun, 6 Nov 2016 23:01:09 +0000 (WET)
+Received: from 140.135.189.46.rev.vodafone.pt ([46.189.135.140])
+    via vs1.ist.utl.pt ([2001:690:2100:1::33])
+    by webmail.tecnico.ulisboa.pt
+    with HTTP (HTTP/1.1 POST); Sun, 06 Nov 2016 23:01:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+    format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Sun, 06 Nov 2016 23:01:08 +0000
+From: =?UTF-8?Q?Miguel_C=C3=A2ndido_Viegas?= <miguel.viegas@ist.utl.pt>
+To: Dharita Queshil Chotalal <dharita.queshil@tecnico.ulisboa.pt>
+Subject: CSF - Teste
+Message-ID: <727094ac5357e495afb050a23ed102df@mail.tecnico.ulisboa.pt>
+X-Sender: miguel.viegas@ist.utl.pt
+User-Agent: Roundcube Webmail/1.1.3

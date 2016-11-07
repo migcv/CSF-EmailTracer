@@ -1,0 +1,75 @@
+Return-Path: <alexandre.figueiredo.pereira@ist.utl.pt>
+Delivered-To: ist176532@mail3-store.ist.utl.pt
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+    by mail3.ist.utl.pt (Postfix) with ESMTP id A5B58801FADA;
+    Mon, 19 Sep 2016 13:52:54 +0100 (WEST)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+    by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 23E8D402FA90;
+    Mon, 19 Sep 2016 13:52:54 +0100 (WEST)
+X-Virus-Scanned: by amavisd-new-2.10.1 (20141025) (Debian) at ist.utl.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+    by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
+    with LMTP id q8t3QWWk43_Y; Mon, 19 Sep 2016 13:52:53 +0100 (WEST)
+Received: from mail3.ist.utl.pt (mail1.ist.utl.pt [193.136.128.10])
+    by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id A30C4402FA88;
+    Mon, 19 Sep 2016 13:52:53 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ist.utl.pt; s=mail;
+    t=1474289573; bh=t/lyyeHWLBWTHSsMmXGAYfZvjbqhTbnQTfmfgbW8zrU=;
+    h=Date:From:To:Subject;
+    b=fcdnQ+s4rXqydtgTCRjE3awxIGnUczu6y1WW0zUXfC902582vPqhsglcMYYb47qXn
+    ESblDWnrAimBBEiiN4bO+gVu0+2bhVDGJTd72oM2n4Ean/T+6aHcWdK3xcDahpmJO6
+    497pTMo672NyGMiaBYf4Yrn+biWgfOzp5r6nw5pc=
+Received: from webmail.tecnico.ulisboa.pt (webmail4.tecnico.ulisboa.pt [IPv6:2001:690:2100:1::8a3:363d])
+    (Authenticated sender: ist177071)
+    by mail3.ist.utl.pt (Postfix) with ESMTPSA id D9C19801F853;
+    Mon, 19 Sep 2016 13:52:52 +0100 (WEST)
+Received: from i5-018.tagus.ist.utl.pt ([172.20.29.158])
+    via vs1.ist.utl.pt ([2001:690:2100:1::33])
+    by webmail.tecnico.ulisboa.pt
+    with HTTP (HTTP/1.1 POST); Mon, 19 Sep 2016 13:52:52 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8;
+    format=flowed
+Content-Transfer-Encoding: 8bit
+Date: Mon, 19 Sep 2016 13:52:52 +0100
+From: Alexandre Figueiredo Pereira <alexandre.figueiredo.pereira@ist.utl.pt>
+To: Rui Nuno Lopes Claro <rui.claro@tecnico.ulisboa.pt>, =?UTF-8?Q?Franci?=
+    =?UTF-8?Q?sco_Falc=C3=A3o_Amaral_Caixeiro?=
+    <francisco.caixeiro@tecnico.ulisboa.pt>, Bernardo Esteves Gomes da Palma
+    Rato <bernardo.rato@tecnico.ulisboa.pt>, =?UTF-8?Q?Miguel_C=C3=A2ndido?=
+    =?UTF-8?Q?_Viegas?= <miguel.viegas@tecnico.ulisboa.pt>, =?UTF-8?Q?Tom?=
+    =?UTF-8?Q?=C3=A1s_Pinto_dos_Santos?= <tomas.d.santos@tecnico.ulisboa.pt>,
+    =?UTF-8?Q?Vasco_Bail=C3=A3o_Martins_Fernandes?=
+    <vasco.bailao@tecnico.ulisboa.pt>, =?UTF-8?Q?Miguel_Leir=C3=B3s_da_Cos?=
+    =?UTF-8?Q?ta_Paiva?= <miguel.c.paiva@tecnico.ulisboa.pt>, =?UTF-8?Q?Ma?=
+    =?UTF-8?Q?riana_Mar=C3=A7al_Vargas?= <marianamvargas@tecnico.ulisboa.pt>,
+    Isabel Cristina Monteiro da Costa <isabel.costa@tecnico.ulisboa.pt>, Rui
+    Miguel Hungria Furtado <rui.furtado@tecnico.ulisboa.pt>, =?UTF-8?Q?Fil?=
+    =?UTF-8?Q?ipe_Jo=C3=A3o_Vieira_Flores_Monteiro?=
+    <filipe.flores.monteiro@tecnico.ulisboa.pt>, Carina Neves Fonseca
+    <carina.fonseca@tecnico.ulisboa.pt>, =?UTF-8?Q?Jo=C3=A3o_Guilherme_dos?=
+    =?UTF-8?Q?_Santos_Leite?= <joao.leite@tecnico.ulisboa.pt>, Tiago Filipe
+    Bravo Fernandes <tiago.f.b.fernandes@tecnico.ulisboa.pt>, =?UTF-8?Q?Jo?=
+    =?UTF-8?Q?=C3=A3o_de_Ara=C3=BAjo_Correia_Neto_Lopes?=
+    <joao.araujo.lopes@tecnico.ulisboa.pt>, =?UTF-8?Q?Pedro_Miguel_Andr?=
+    =?UTF-8?Q?=C3=A9_da_Silva?=
+    <pedro.miguel.andre.da.silva@tecnico.ulisboa.pt>,
+    =?UTF-8?Q?Jo=C3=A3o_Guilherme_Esteves_de_Andrade?=
+    <j.guilherme.andrade@tecnico.ulisboa.pt>, Pedro Francisco Carmelo de
+    Oliveira <pedro.francisco.oliveira@tecnico.ulisboa.pt>, =?UTF-8?Q?Ant?=
+    =?UTF-8?Q?=C3=B3nio_Manuel_Carmo_dos_Santos_Ant=C3=A3o_Freire?=
+    <antonio.freire@tecnico.ulisboa.pt>, Marta Martins Bernardo
+    <marta.bernardo@tecnico.ulisboa.pt>, =?UTF-8?Q?Jo=C3=A3o_Diogo_Vinagre?=
+    =?UTF-8?Q?_Tom=C3=A1zio?= <joao.tomazio@tecnico.ulisboa.pt>,
+    =?UTF-8?Q?Jo=C3=A3o_Ant=C3=B3nio_Mateus_Tiago?=
+    <joao.m.tiago@tecnico.ulisboa.pt>, Tiago Mousinho Martins
+    <tiago.mousinho@tecnico.ulisboa.pt>, =?UTF-8?Q?Lu=C3=ADs_Rafael_Bastos?=
+    =?UTF-8?Q?_Duarte?= <luis.rafael.bastos.duarte@tecnico.ulisboa.pt>
+Subject: CSF grupo
+Return-Receipt-To: Alexandre Figueiredo Pereira
+    <alexandre.figueiredo.pereira@ist.utl.pt>
+Disposition-Notification-To: Alexandre Figueiredo Pereira
+    <alexandre.figueiredo.pereira@ist.utl.pt>
+Message-ID: <080831e6c65e83cd3e7be69ab727ccc7@mail.tecnico.ulisboa.pt>
+X-Sender: alexandre.figueiredo.pereira@ist.utl.pt
+User-Agent: Roundcube Webmail/1.1.3
