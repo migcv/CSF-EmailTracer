@@ -1,10 +1,12 @@
 // Array to store information of each field that matters
-var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(), received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array(), ip = new Array();
+var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(),
+received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array(), ip = new Array();
 var data;
+var receivedIPInfo;
 
 function parser(){
     // Auxiliar variables
-    var i, j, len;
+    var i, j, k, len;
     // Gets the email header given by the user
     var emailHeader = document.getElementById("email-header").value;
     // Splits the header by '\n'
@@ -200,6 +202,9 @@ function ipTable() {
 
     for(j = 0;  j < ip.length; j++) {
         getIPinfo(ip[j]);
+        if(!receivedIPInfo) {
+            continue;
+        }
         newRow = tableRef.insertRow(j);
 
         // Insert a cell IP
@@ -278,9 +283,21 @@ function getReceived(received) {
                 }
                 aux_from.push(ip_aux);
                 ip_aux = ip_aux.split("[")[1].split("]")[0];
-                if(ip.indexOf(ip_aux) < 0 && ip_aux != "127.0.0.1")
+                if(ip_aux.includes("IPv6:")) {
+                    console.log("Removing IPv6 from: " + ip_aux);
+                    ip_aux = ip_aux.split("IPv6:")[1];
+                }
+                // Saves IP if the IP wasn't saved yet
+                var exists = false;
+                for(k = 0; k < ip.length; k++) {
+                    if(ip[k] == ip_aux || ip_aux == "127.0.0.1") {
+                        exists = true;
+                    }
+                }
+                if(!exists) {
+                    console.log("New IP inserted: " + ip_aux);
                     ip.push(ip_aux);
-
+                }
             }
         }
         if(receivedSplited[i].includes("by")) {
@@ -343,6 +360,7 @@ function getToCC(to, stringtoFind){
 }
 
 function getIPinfo(ip){
+    receivedIPInfo = false;
     //https://www.eurekapi.com/IP-GeoLoc-ip-address-geolocation-locator-lookup-database-software-geography-country-region-state-county-province-city-postal-zip-code-metro-area-code-latitude-longitude@IP-GeoLoc
     //http://ipinfo.io/developers/specific-fields
     if (window.XMLHttpRequest)
@@ -358,6 +376,7 @@ function getIPinfo(ip){
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
             data = JSON.parse(xmlhttp.responseText);
+            receivedIPInfo = true;
             console.log(data);
         }
     }
