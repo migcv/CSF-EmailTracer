@@ -189,7 +189,7 @@ function receivedTable() {
     newCell.appendChild(newText);
     // Insert a cell DATE
     newCell  = newRow.insertCell(3);
-     newText  = document.createTextNode("---");
+    newText  = document.createTextNode("---");
     newCell.appendChild(newText);
 
     // Puts table visible
@@ -385,3 +385,5 @@ function getIPinfo(ip){
     xmlhttp.open("GET", htt1 ,false);
     xmlhttp.send();
 }
+
+
