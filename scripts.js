@@ -97,7 +97,7 @@ function parser(){
     console.log(ip);
     receivedTable();
     ipTable();
-
+    initMap();
 }
 
 function receivedTable() {
@@ -132,7 +132,7 @@ function receivedTable() {
     newCell.appendChild(newText);
     // Insert a cell DATE
     newCell  = newRow.insertCell(3);
-     newText  = document.createTextNode(date[0].split("Date:")[1]);
+    newText  = document.createTextNode(date[0].split("Date:")[1]);
     newCell.appendChild(newText);
 
     for(j = 0;  j < received.length; j++) {
@@ -385,5 +385,33 @@ function getIPinfo(ip){
     xmlhttp.open("GET", htt1 ,false);
     xmlhttp.send();
 }
+var map;
+function initMap() {
+    var mapOptions = {
+        zoom: 10,
+        center: new google.maps.LatLng(38.736744, -9.137267)
+    };
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    google.maps.event.addDomListener(window, 'load', initMap);
 
+    for(j = 0;  j < ip.length; j++) {
+        getIPinfo(ip[j]);
+        if(!receivedIPInfo) {
+            continue;
+        }
 
+        if(data.loc != undefined) {
+            lat1 = parseFloat(data.loc.split(",")[0]);
+            log1 = parseFloat(data.loc.split(",")[1]);
+        }
+        else{
+            continue;
+        }
+        var uluru = {lat: lat1, lng: log1};
+        var marker = new google.maps.Marker({
+            position: uluru,
+            //label: data.ip,
+            map: map
+        });
+    }
+}

@@ -86,3 +86,11 @@ thead {
     margin-top: 15px;
     display: none;
 }
+
+/************************
+ *  MAP                 *
+ ************************/
+#map {
+        height: 400px;
+        width: 100%;
+       }
