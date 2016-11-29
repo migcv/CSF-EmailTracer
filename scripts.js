@@ -90,11 +90,11 @@ function parser(){
         document.getElementById("to-p").style.display = "block";
         document.getElementById("to").innerHTML = getToCC(to, "To:");
     }
+    document.getElementById("date").innerHTML = getDeliverToAndDateAndSubject(date, "Date:");
     // Changes display of #parse-result to "block"
     document.getElementById("parse-result").style.display = "block";
 
     // Contructs a table with information from the "Received:"
-    console.log(ip);
     receivedTable();
     ipTable();
     initMap();
@@ -114,7 +114,7 @@ function receivedTable() {
     newRow = tableRef.insertRow(0);
 
     // Insert a cell RECEIVED-FROM
-    newCell  = newRow.insertCell(0);
+    /*newCell  = newRow.insertCell(0);
     newText  = document.createTextNode(getFrom(from));
     newCell.appendChild(newText);
     // Insert a cell RECEIVED-BY
@@ -133,7 +133,7 @@ function receivedTable() {
     // Insert a cell DATE
     newCell  = newRow.insertCell(3);
     newText  = document.createTextNode(date[0].split("Date:")[1]);
-    newCell.appendChild(newText);
+    newCell.appendChild(newText);*/
 
     for(j = 0;  j < received.length; j++) {
         aux = getReceived(received[received.length-j-1]);
@@ -167,7 +167,7 @@ function receivedTable() {
         newCell.appendChild(newText);
     }
 
-    var aux = getReceived(received[0]);
+    /*var aux = getReceived(received[0]);
     var newRow = tableRef.insertRow(received.length+1);
 
     // Insert a cell RECEIVED-FROM
@@ -190,7 +190,7 @@ function receivedTable() {
     // Insert a cell DATE
     newCell  = newRow.insertCell(3);
     newText  = document.createTextNode("---");
-    newCell.appendChild(newText);
+    newCell.appendChild(newText);*/
 
     // Puts table visible
     received_table.style.display = "block";
@@ -284,7 +284,7 @@ function getReceived(received) {
                 aux_from.push(ip_aux);
                 ip_aux = ip_aux.split("[")[1].split("]")[0];
                 if(ip_aux.includes("IPv6:")) {
-                    console.log("Removing IPv6 from: " + ip_aux);
+                    //console.log("Removing IPv6 from: " + ip_aux);
                     ip_aux = ip_aux.split("IPv6:")[1];
                 }
                 // Saves IP if the IP wasn't saved yet
@@ -295,7 +295,7 @@ function getReceived(received) {
                     }
                 }
                 if(!exists) {
-                    console.log("New IP inserted: " + ip_aux);
+                    //console.log("New IP inserted: " + ip_aux);
                     ip.push(ip_aux);
                 }
             }
@@ -377,7 +377,7 @@ function getIPinfo(ip){
         {
             data = JSON.parse(xmlhttp.responseText);
             receivedIPInfo = true;
-            console.log(data);
+            //console.log(data);
         }
     }
     var htt = "http://api.eurekapi.com/iplocation/v1.8/locateip?key=SAK8C9U7N38NH2E4HC2Z&ip="+ ip+"&format=JSON";
@@ -399,19 +399,46 @@ function initMap() {
         if(!receivedIPInfo) {
             continue;
         }
+        var infowindow = new google.maps.InfoWindow()
 
         if(data.loc != undefined) {
             lat1 = parseFloat(data.loc.split(",")[0]);
             log1 = parseFloat(data.loc.split(",")[1]);
         }
-        else{
-            continue;
-        }
+        else{ continue; }
         var uluru = {lat: lat1, lng: log1};
         var marker = new google.maps.Marker({
             position: uluru,
-            //label: data.ip,
             map: map
         });
+        var infowindow = new google.maps.InfoWindow()
+
+        var content = data.ip
+        google.maps.event.addListener(marker,'click', 
+            (function(marker,content,infowindow){ 
+                return function() {
+                    infowindow.setContent(content);
+                    infowindow.open(map,marker);
+                };
+        })(marker,content,infowindow)); 
+
     }
 }
+
+//clearbit.Company.setVersion('2016-05-18');
+//clearbit.Prospector.setVersion('2016-10-04');
+//clearbit.Watchlist.setVersion('2015-11-13');
+/*function findInfoByEmail(){
+    var clearbit = require('clearbit')('{sk_d369f67048c0b1da11ab6e9c6b306a9b}');
+    clearbit.Enrichment.find({email: 'alex@alexmaccaw.com', stream: true})
+  .then(function (response) {
+    var person  = response.person;
+    var company = response.company;
+
+    console.log('Name: ', person && person.name.fullName);
+  })
+  .catch(function (err) {
+    console.error(err);
+  });*/
+}
+
