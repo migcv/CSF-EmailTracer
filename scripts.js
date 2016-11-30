@@ -439,6 +439,6 @@ function initMap() {
   })
   .catch(function (err) {
     console.error(err);
-  });*/
-}
+  });
+}*/
 
