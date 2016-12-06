@@ -1,6 +1,6 @@
 // Array to store information of each field that matters
 var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(),
-received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array(), ip = new Array();
+received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array(), ip = new Array(), serverDates = new Array();
 var data;
 var receivedIPInfo;
 var firstConnectionDate;
@@ -101,42 +101,15 @@ function parser(){
 	ipTable();
 	initMap();
 	verifyVPN();
+	spoofedMails();
 }
 
 function receivedTable() {
 	var received_table = document.getElementById("received-table");
 	var tableRef = received_table.getElementsByTagName('tbody')[0];
 
-	/*var x = document.getElementById("myTable").rows.length;
-	while(document.getElementById("myTable").rows.length > 1) {
-		alert(document.getElementById("myTable").rows.length);
-		tableRef.deleteRow(0);
-	}*/
-
 	aux = getReceived(received[received.length-1]);
 	newRow = tableRef.insertRow(0);
-
-	// Insert a cell RECEIVED-FROM
-	/*newCell  = newRow.insertCell(0);
-	newText  = document.createTextNode(getFrom(from));
-	newCell.appendChild(newText);
-	// Insert a cell RECEIVED-BY
-	var newCell  = newRow.insertCell(1);
-	if(aux[1] == "") {
-		var newText  = document.createTextNode("---");
-	}
-	else {
-		var newText  = document.createTextNode(aux[1]);
-	}
-	newCell.appendChild(newText);
-	// Insert a cell PROTOCOL
-	newCell  = newRow.insertCell(2);
-	newText  = document.createTextNode("---");
-	newCell.appendChild(newText);
-	// Insert a cell DATE
-	newCell  = newRow.insertCell(3);
-	newText  = document.createTextNode(date[0].split("Date:")[1]);
-	newCell.appendChild(newText);*/
 
 	for(j = 0;  j < received.length; j++) {
 		aux = getReceived(received[received.length-j-1]);
@@ -168,36 +141,13 @@ function receivedTable() {
 		newCell  = newRow.insertCell(3);
 		newText  = document.createTextNode(aux[3]);
 		newCell.appendChild(newText);
+		serverDates.push(aux[3]);
 
 		if(j == 0){
 			firstConnectionDate = aux[3];
 		}
 	}
 
-	/*var aux = getReceived(received[0]);
-	var newRow = tableRef.insertRow(received.length+1);
-
-	// Insert a cell RECEIVED-FROM
-	newCell  = newRow.insertCell(0);
-	if(aux[0] == "") {
-		var newText  = document.createTextNode("---");
-	}
-	else {
-		newText  = document.createTextNode(aux[0]);
-	}
-	newCell.appendChild(newText);
-	// Insert a cell RECEIVED-BY
-	var newCell  = newRow.insertCell(1);
-	var newText  = document.createTextNode(getDeliverToAndDateAndSubject(deliveredTo, "Delivered-To:"));
-	newCell.appendChild(newText);
-	// Insert a cell PROTOCOL
-	newCell  = newRow.insertCell(2);
-	newText  = document.createTextNode("---");
-	newCell.appendChild(newText);
-	// Insert a cell DATE
-	newCell  = newRow.insertCell(3);
-	newText  = document.createTextNode("---");
-	newCell.appendChild(newText);*/
 
 	// Puts table visible
 	received_table.style.display = "block";
@@ -434,7 +384,28 @@ function initMap() {
 
 function verifyVPN(){
 	emailDate = getDeliverToAndDateAndSubject(date, "Date:");
-	console.log(firstConnectionDate);
-	console.log(emailDate);
+	//console.log(firstConnectionDate);
+	//console.log(emailDate);
 	//NAO SEI FAZER A LIGAÇÃO
+}
+
+
+function spoofedMails(){
+	actualDate = new Array();
+	emailDate = getDeliverToAndDateAndSubject(date, "Date:");
+	actualDate.push(new Date(emailDate).toUTCString());
+
+	receivedDates = new Array();
+	for(i = 0; i < serverDates.length; i++){
+		date = new Date(serverDates[i]).toUTCString();
+		receivedDates.push(date);
+	}
+	
+	a2 = new Date(actualDate[0]);
+	for(i = 0; i < receivedDates.length; i++){
+		a1 = new Date(receivedDates[i]);
+		if(a1 - a2 > 600000){
+			alert("Probably the message email Spoofed!")
+		}
+	}
 }
