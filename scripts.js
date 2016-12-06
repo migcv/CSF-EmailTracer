@@ -93,6 +93,7 @@ function parser(){
     document.getElementById("date").innerHTML = getDeliverToAndDateAndSubject(date, "Date:");
     // Changes display of #parse-result to "block"
     document.getElementById("parse-result").style.display = "block";
+    document.getElementById("map").style.display = "block";
 
     // Contructs a table with information from the "Received:"
     receivedTable();

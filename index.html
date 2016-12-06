@@ -4,18 +4,22 @@
     <meta charset="utf-8">
 
     <title>Email Tracker</title>
-
-    <link href="style.css" rel="stylesheet">
-
-    <link rel="shortcut icon" href="logo.png">
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Shortcut Icon -->
+    <link rel="shortcut icon" href="img/logo.png">
 
 </head>
 <body>
-    <img id="logo" src="logo.png"/>
-    <h1>Email Location Tracker</h1>
+    <header>
+        <img id="logo" src="img/marker-logo.png"/>
+        <h1>Email Location Tracker</h1>
+    </header>
     <section id="email-header-input">
         <textarea id="email-header" placeholder="Insert email header here"></textarea>
-        <button onclick="parser()">TRACK!</button>
+        <button onclick="parser()"><span>TRACK!</span></button>
     </section>
     <section id="parse-result">
         <p>
@@ -77,6 +81,28 @@
     </section>
     <section id="map">
     </section>
+    <footer>
+        <div class="container text-center">
+            <div class="col-md-2 col-sm-6 logo">
+               <img class="footer-logo" src="img/IST_Logo.png"/>
+            </div>
+            <div class="col-md-2 col-sm-6 course">
+                <p>CSF Project<br>1.º Semester 2016/2017</p>
+            </div>
+            <div class="col-md-2 col-sm-6 student">
+                <p>Group 9</p>
+            </div>
+            <div class="col-md-2 col-sm-6 student">
+                <p>75669 Dharita Queshil</p>
+            </div>
+            <div class="col-md-2 col-sm-6 student">
+                <p>76532 Miguel Viegas</p>
+            </div>
+            <div class="col-md-2 col-sm-6 student">
+                <p>76349 Daniel Trindade</p>  
+            </div>
+        </div>
+    </footer>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALd6UopkHWPxpJPju_kOY7wgPMtt7XcoY"></script>
     <script src="scripts.js"></script>

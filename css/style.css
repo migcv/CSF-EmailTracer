@@ -1,0 +1,161 @@
+body {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Arial";
+    background-color: gray;
+}
+:root {
+    --color: #009FE3;
+}
+/************************
+ *  HEADER              *
+ ************************/
+header {
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+h1 {
+    text-align: center;
+    color: white;
+    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+    margin-bottom: 10px;
+}
+header img {
+    width: 5.5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -20px;
+}
+/************************
+ *  EMAIL-HEADER-INPUT  *
+ ************************/
+#email-header-input {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+#email-header-input textarea  {
+    height: 22.5em;
+    resize: none;
+    width: 100%;
+}
+button {
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    height: 30px;
+    background: var(--color);
+    color: white;
+    border-radius: 8px;
+    border: 1px solid var(--color);
+    font-weight: bold;
+}
+button span {
+    color: white;
+    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+}
+/************************
+ *  PARSE-RESULTS       *
+ ************************/
+#parse-result {
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+#parse-result, cc-p, to-p {
+    display: none;
+}
+
+.email-fields {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: black;
+}
+/************************
+ *  RECEIVED-TABLE      *
+ ************************/
+#received-table {
+    margin-top: 15px;
+    display: none;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, thead, td {
+    border: 3px solid black;
+}
+
+thead, td {
+    padding: 10px;
+    text-align: left;
+}
+thead {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    background-color: var(--color);
+}
+tbody{
+    background-color: white;
+}
+/************************
+ *  RECEIVED-TABLE      *
+ ************************/
+#ip-table {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    width: 90%;
+    display: none;
+}
+/************************
+ *  MAP                 *
+ ************************/
+#map {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    height: 400px;
+    width: 90%;
+    display: none;
+}
+/************************
+ *  FOOTER              *
+ ************************/
+footer {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    background-color: dimgray;
+    padding: 1em;
+    color: white;
+    font-weight: bold;
+}
+footer .logo img {
+    width: 50%;
+}
+footer .course {
+    margin-top: 1.7em;
+}
+footer .student {
+    margin-top: 2.2em;
+}
+.footer-divider {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: #333; /* old IE */
+    background-color: #333; /* Modern Browsers */
+}
