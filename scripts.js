@@ -1,6 +1,6 @@
 // Array to store information of each field that matters
 var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(),
-received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array(), ip = new Array(), serverDates = new Array();
+received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array(), ip = new Array(), serverDates = new Array(), from1 = new Array(), by1 = new Array();
 var data;
 var receivedIPInfo;
 var firstConnectionDate;
@@ -268,6 +268,8 @@ function getReceived(received) {
 	receivedSplited = received.split(";");
 	aux_date = receivedSplited[receivedSplited.length-1];
 	res.push(aux_by, aux_from, aux_with, aux_date);
+	from1.push(aux_from);
+	by1.push(aux_by);
 	return res;
 
 }
@@ -408,4 +410,8 @@ function spoofedMails(){
 			alert("Probably the message email Spoofed!")
 		}
 	}
+	console.log("-----------BY------------")
+	console.log(by1);
+	console.log("-----------FROM------------")
+	console.log(from1)
 }
