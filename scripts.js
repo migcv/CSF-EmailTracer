@@ -1,6 +1,7 @@
 // Array to store information of each field that matters
-var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(),
-received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array(), ip = new Array(), serverDates = new Array(), from1 = new Array(), by1 = new Array();
+var deliveredTo = new Array(), from = new Array(), received = new Array(), x_received = new Array(), message_id = new Array(),
+received_spf = new Array(), date = new Array(), subject = new Array(), cc = new Array(), to = new Array(), ip = new Array(), 
+serverDates = new Array(), from1 = new Array(), by1 = new Array();
 var data;
 var receivedIPInfo;
 var firstConnectionDate;
@@ -78,6 +79,13 @@ function parser(){
                 to[len-1] += headerSplitter[++j];
             }
         }
+        if(headerSplitter[j].includes("Message-ID:") && headerSplitter[j].indexOf("Message-ID:") == 0){
+            message_id.push(headerSplitter[j]);
+            len = message_id.length;
+            while(indexOfFields(headerSplitter[j+1]) != 0) {
+                message_id[len-1] += headerSplitter[++j];
+            }
+        }
     }
     // Sets the result obtained in the respectetive span
     document.getElementById("deliveredTo").innerHTML = getDeliverToAndDateAndSubject(deliveredTo, "Delivered-To:");
@@ -95,13 +103,15 @@ function parser(){
     // Changes display of #parse-result to "block"
     document.getElementById("parse-result").style.display = "block";
     document.getElementById("map").style.display = "block";
+    document.getElementById("spoof-vpn").style.display = "block";
 
 	// Contructs a table with information from the "Received:"
 	receivedTable();
 	ipTable();
 	initMap();
 	verifyVPN();
-	spoofedMails();
+    document.getElementById("spoof-p").style.display = "block";
+    document.getElementById("spoof").innerHTML = spoofedMails();
 }
 
 function receivedTable() {
@@ -229,7 +239,9 @@ function getReceived(received) {
 	for(i = 0; i < receivedSplited.length; i++) {
 		if(receivedSplited[i].includes("from")) {
 			// Get DNS
-			aux_from.push(receivedSplited[++i]);
+            ++i;
+			aux_from.push(receivedSplited[i]);
+            from1.push(receivedSplited[i]);
 			// Get IP
 			if(!aux_from[0].includes("localhost")) {
 				for(; receivedSplited[i].indexOf("[") < 0; i++);
@@ -241,7 +253,6 @@ function getReceived(received) {
 				aux_from.push(ip_aux);
 				ip_aux = ip_aux.split("[")[1].split("]")[0];
 				if(ip_aux.includes("IPv6:")) {
-					//console.log("Removing IPv6 from: " + ip_aux);
 					ip_aux = ip_aux.split("IPv6:")[1];
 				}
 				// Saves IP if the IP wasn't saved yet
@@ -252,14 +263,15 @@ function getReceived(received) {
 					}
 				}
 				if(!exists) {
-					//console.log("New IP inserted: " + ip_aux);
 					ip.push(ip_aux);
 				}
 			}
 		}
 		if(receivedSplited[i].includes("by")) {
 			// Get DNS
-			aux_by.push(receivedSplited[++i]);
+            ++i;
+			aux_by.push(receivedSplited[i]);
+            by1.push(receivedSplited[i]);
 		}
 		if(receivedSplited[i].includes("with")) {
 			aux_with.push(receivedSplited[++i]);
@@ -268,8 +280,8 @@ function getReceived(received) {
 	receivedSplited = received.split(";");
 	aux_date = receivedSplited[receivedSplited.length-1];
 	res.push(aux_by, aux_from, aux_with, aux_date);
-	from1.push(aux_from);
-	by1.push(aux_by);
+	//from1.push(aux_from);
+	//by1.push(aux_by);
 	return res;
 
 }
@@ -318,6 +330,10 @@ function getToCC(to, stringtoFind){
 	}
 }
 
+function getMessageIdDomain(msgID) {
+    return msgID[0].split("@")[1].split(">")[0].split(".");
+}
+
 function getIPinfo(ip){
 	receivedIPInfo = false;
 	//https://www.eurekapi.com/IP-GeoLoc-ip-address-geolocation-locator-lookup-database-software-geography-country-region-state-county-province-city-postal-zip-code-metro-area-code-latitude-longitude@IP-GeoLoc
@@ -336,10 +352,8 @@ function getIPinfo(ip){
 		{
 			data = JSON.parse(xmlhttp.responseText);
 			receivedIPInfo = true;
-			//console.log(data);
 		}
 	}
-	var htt = "http://api.eurekapi.com/iplocation/v1.8/locateip?key=SAK8C9U7N38NH2E4HC2Z&ip="+ ip+"&format=JSON";
 	var htt1 = "http://ipinfo.io/"+ip+ "/json";
 	xmlhttp.open("GET", htt1 ,false);
 	xmlhttp.send();
@@ -393,25 +407,68 @@ function verifyVPN(){
 
 
 function spoofedMails(){
+    var spoofedcase = 0;
+    // Test Timestamps
 	actualDate = new Array();
 	emailDate = getDeliverToAndDateAndSubject(date, "Date:");
 	actualDate.push(new Date(emailDate).toUTCString());
-
 	receivedDates = new Array();
 	for(i = 0; i < serverDates.length; i++){
 		date = new Date(serverDates[i]).toUTCString();
 		receivedDates.push(date);
 	}
-	
 	a2 = new Date(actualDate[0]);
 	for(i = 0; i < receivedDates.length; i++){
 		a1 = new Date(receivedDates[i]);
 		if(a1 - a2 > 600000){
-			alert("Probably the message email Spoofed!")
+			alert("TIMESTAMPS Spoof Suspect!")
+            spoofedcase++;
 		}
 	}
-	console.log("-----------BY------------")
-	console.log(by1);
-	console.log("-----------FROM------------")
-	console.log(from1)
+    // Test Received's By's and From's
+    by1 = removeEmpty(by1);
+    from1 = removeEmpty(from1);
+    if(by1.length == from1.length) {
+        for(i = 1; i < by1.length - 1; i++) {
+            if(strcmp(by1[i], from1[i+1]) != 0) {
+                alert("BY_FROM Spoof Suspect!")
+                spoofedcase++;
+                break;
+            }
+        }
+    }
+    // Test MessageID
+    var domain = getMessageIdDomain(message_id);
+    if(from1.length > 1) {
+        var fromDomain = from1[2].split(".");
+    }
+    else {
+        var fromDomain = from1[0].split(".");
+    }
+    for(i = 1; i < domain.length; i++) {
+        console.log(fromDomain);
+        console.log(domain);
+        if(strcmp(domain[i], fromDomain[i]) != 0) {
+            alert("MSG_ID Spoof Suspect!")
+            spoofedcase++;
+            break;
+        }
+    }
+    return spoofedcase;
+}
+    
+function removeEmpty(array) {
+    var i;
+    for(i = 0; i < array.length; i++) {
+        if(array[i] == "") {
+            array.splice(i, 1);   
+        }
+    }
+    return array
+}
+
+function strcmp(a, b) {
+    if (a.toString() < b.toString()) return -1;
+    if (a.toString() > b.toString()) return 1;
+    return 0;
 }

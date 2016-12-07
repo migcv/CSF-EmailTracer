@@ -64,19 +64,38 @@ button span {
  *  PARSE-RESULTS       *
  ************************/
 #parse-result {
-    color: white;
+    color: black;
+    margin-top: 1em;
     margin-left: auto;
     margin-right: auto;
+    padding: 1em;
     width: 90%;
+    background-color: white;
+    border: 3px solid black;
 }
 #parse-result, cc-p, to-p {
     display: none;
 }
-
 .email-fields {
     text-transform: uppercase;
     font-weight: bold;
     color: black;
+}
+/************************
+ *  SPOOF-VPN           *
+ ************************/
+#spoof-vpn {
+    color: black;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    width: 90%;
+    background-color: white;
+    border: 3px solid black;
+}
+#spoof-vpn, spoof-p, vpn-p {
+    display: none;
 }
 /************************
  *  RECEIVED-TABLE      *

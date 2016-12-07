@@ -9,7 +9,8 @@ Received: from localhost (localhost.localdomain [127.0.0.1])
 X-Virus-Scanned: by amavisd-new-2.10.1 (20141025) (Debian) at ist.utl.pt
 Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
     by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
-    with LMTP id zwyxjSZbyOWD; Mon, 19 Sep 2016 12:55:51 +0100 (WEST)
+    with LMTP id zwyxjSZbyOWD;
+    Mon, 19 Sep 2016 12:55:51 +0100 (WEST)
 Received: from mail3.ist.utl.pt (mail3.ist.utl.pt [IPv6:2001:690:2100:1::e1dc:b6b6])
     by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 87D1C402FA79;
     Mon, 19 Sep 2016 12:55:51 +0100 (WEST)
