@@ -346,20 +346,14 @@ function getMessageIdDomain(msgID) {
 
 function getIPinfo(ip){
 	receivedIPInfo = false;
-	//https://www.eurekapi.com/IP-GeoLoc-ip-address-geolocation-locator-lookup-database-software-geography-country-region-state-county-province-city-postal-zip-code-metro-area-code-latitude-longitude@IP-GeoLoc
-	//http://ipinfo.io/developers/specific-fields
-	if (window.XMLHttpRequest)
-	{// code for IE7+, Firefox, Chrome, Opera, Safari
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp=new XMLHttpRequest();
 	}
-	else
-	{// code for IE6, IE5
+	else {// code for IE6, IE5
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	xmlhttp.onreadystatechange=function()
-	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
+	xmlhttp.onreadystatechange=function() {
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			data = JSON.parse(xmlhttp.responseText);
 			receivedIPInfo = true;
 		}
@@ -368,6 +362,7 @@ function getIPinfo(ip){
 	xmlhttp.open("GET", htt1 ,false);
 	xmlhttp.send();
 }
+
 var map;
 function initMap() {
 	var mapOptions = {
