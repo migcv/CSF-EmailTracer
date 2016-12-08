@@ -4,7 +4,7 @@ received_spf = new Array(), date = new Array(), subject = new Array(), cc = new 
 serverDates = new Array(), from1 = new Array(), by1 = new Array();
 var data;
 var receivedIPInfo;
-var firstConnectionDate;
+var firstConnectionDate, firstConnectionCity;
 
 function parser(){
 	// Auxiliar variables
@@ -212,6 +212,10 @@ function ipTable() {
 		newCell  = newRow.insertCell(7);
 		newText  = document.createTextNode(data.isp);
 		newCell.appendChild(newText);
+
+		if(j == 0){
+			firstConnectionCity = data.country;
+		}
 	}
 	// Puts table visible
 	received_table.style.display = "block";
@@ -222,7 +226,15 @@ function indexOfFields(headerLine) {
 	var headerFields = ["Received:", "Delivered-To:", "X-Received:", "Received-SPF:", "DKIM-Signature:", "Return-Path:",
 	"Authentication-Results:", "Date:", "From:", "Reply-To:", "Message-ID:", "Message-Id:", "Subject:", "MIME-Version:", "Content-Type:",
 	"To:", "X-Virus-Scanned:", "Content-Transfer-Encoding:", "X-Sender", "User-Agent", "In-Reply-To", "X-Mailer",
-	"References", "Cc", "X-MSFBL", "Content-Language", "X-Priority", "Disposition-Notification-To", "X-wrimid", "X-OriginalArrivalTime", "X-Report-Abuse", "X-SMTPCOM-Tracking-Number", "X-SMTPCOM-Sender-ID", "Feedback-ID", "DomainKey-Signature", "X-CSA-Complaints", "List-ID", "x-job", "Return-Receipt-To", "X-Spam-Flag", "X-Spam-Score", "X-Spam-Level", "X-Spam-Status", "X-Mailgun-Sid", "X-Auto-Response-Suppress", "X-PHP-Originating-Script", "X-Gmail-Original-Message-ID", "X-AntiAbuse", "X-Get-Message-Sender-Via:", "X-Authenticated-Sender:"];
+	"References", "Cc", "X-MSFBL", "Content-Language", "X-Priority", "Disposition-Notification-To", "X-wrimid", "X-OriginalArrivalTime", 
+	"X-Report-Abuse", "X-SMTPCOM-Tracking-Number", "X-SMTPCOM-Sender-ID", "Feedback-ID", "DomainKey-Signature", "X-CSA-Complaints", "List-ID",
+	"x-job", "Return-Receipt-To", "X-Spam-Flag", "X-Spam-Score", "X-Spam-Level", "X-Spam-Status", "X-Mailgun-Sid", "X-Auto-Response-Suppress", 
+	"X-PHP-Originating-Script", "X-Gmail-Original-Message-ID", "X-AntiAbuse", "X-Get-Message-Sender-Via:", "X-Authenticated-Sender:", "Thread-Topic:",
+	"Thread-Index:", "X-MS-Has-Attach", "X-MS-TNEF-Correlator:", "authentication-results:", "x-ms-exchange-messagesentrepresentingtype:",
+	"x-tmn:", "x-eopattributedmessage:", "x-microsoft-exchange-diagnostics:", "x-ms-office365-filtering-correlation-id:", "x-microsoft-antispam:",
+	"x-exchange-antispam-report-cfa-test:", "x-forefront-prvs:", "spamdiagnosticoutput:", "spamdiagnosticmetadata:", "X-OriginatorOrg:",
+	"X-MS-Exchange-CrossTenant-originalarrivaltime:", "X-MS-Exchange-CrossTenant-fromentityheader:", "X-MS-Exchange-CrossTenant-id:",
+	"X-MS-Exchange-Transport-CrossTenantHeadersStamped:", "X-OriginalArrivalTime:"];
 	for(i = 0; i < headerFields.length; i++) {
 		if(headerLine.includes(headerFields[i]) && headerLine.indexOf(headerFields[i]) == 0) {
 			return 0;
@@ -280,12 +292,10 @@ function getReceived(received) {
 	receivedSplited = received.split(";");
 	aux_date = receivedSplited[receivedSplited.length-1];
 	res.push(aux_by, aux_from, aux_with, aux_date);
-	//from1.push(aux_from);
-	//by1.push(aux_by);
 	return res;
 
 }
-// NOT USED....YET........
+
 function getReceivedSPF(receivedSPF) {
 	var splited = receivedSPF[0].split("=");
 	return splited[1].split(";")[0];
@@ -361,8 +371,8 @@ function getIPinfo(ip){
 var map;
 function initMap() {
 	var mapOptions = {
-		zoom: 10,
-		center: new google.maps.LatLng(38.736744, -9.137267)
+		zoom: 2,
+		center: new google.maps.LatLng(0.682927, 28.743951)
 	};
 	map = new google.maps.Map(document.getElementById('map'), mapOptions);
 	google.maps.event.addDomListener(window, 'load', initMap);
@@ -400,9 +410,11 @@ function initMap() {
 
 function verifyVPN(){
 	emailDate = getDeliverToAndDateAndSubject(date, "Date:");
-	//console.log(firstConnectionDate);
-	//console.log(emailDate);
-	//NAO SEI FAZER A LIGAÇÃO
+	console.log("First Connection:")
+	console.log(firstConnectionCity);
+	console.log(firstConnectionDate);
+	console.log("Original Time:")
+	console.log(emailDate);
 }
 
 

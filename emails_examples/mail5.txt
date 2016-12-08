@@ -1,0 +1,140 @@
+Delivered-To: dharu.q@gmail.com
+Received: by 10.103.112.132 with SMTP id l126csp1317476vsc;
+        Fri, 28 Oct 2016 11:02:54 -0700 (PDT)
+X-Received: by 10.99.178.89 with SMTP id t25mr380143pgo.131.1477677773281;
+        Fri, 28 Oct 2016 11:02:53 -0700 (PDT)
+Return-Path: <mihir_dilip@hotmail.co.uk>
+Received: from BLU004-OMC2S31.hotmail.com (blu004-omc2s31.hotmail.com. [65.55.111.106])
+        by mx.google.com with ESMTPS id 80si14496706pfp.274.2016.10.28.11.02.52
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Fri, 28 Oct 2016 11:02:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of mihir_dilip@hotmail.co.uk designates 65.55.111.106 as permitted sender) client-ip=65.55.111.106;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of mihir_dilip@hotmail.co.uk designates 65.55.111.106 as permitted sender) smtp.mailfrom=mihir_dilip@hotmail.co.uk
+Received: from EUR03-DB5-obe.outbound.protection.outlook.com ([65.55.111.71]) by BLU004-OMC2S31.hotmail.com over TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008);
+	 Fri, 28 Oct 2016 11:02:48 -0700
+Received: from AM5EUR03FT013.eop-EUR03.prod.protection.outlook.com (10.152.16.55) by AM5EUR03HT043.eop-EUR03.prod.protection.outlook.com (10.152.17.151) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.679.5; Fri, 28 Oct 2016 18:02:46 +0000
+Received: from VI1PR0201MB2064.eurprd02.prod.outlook.com (10.152.16.51) by AM5EUR03FT013.mail.protection.outlook.com (10.152.16.140) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.679.5 via Frontend Transport; Fri, 28 Oct 2016 18:02:46 +0000
+Received: from VI1PR0201MB2064.eurprd02.prod.outlook.com ([10.169.131.13]) by VI1PR0201MB2064.eurprd02.prod.outlook.com ([10.169.131.13]) with mapi id 15.01.0679.015; Fri, 28 Oct 2016 18:02:46 +0000
+From: Mihir Dilip <mihir_dilip@hotmail.co.uk>
+To: Dharita Queshil <dharu.q@gmail.com>, "priyanka.queshil" <priyanka.queshil@gmail.com>
+Subject: Re: Network and Computer Security Proposal
+Thread-Topic: Network and Computer Security Proposal
+Thread-Index: AQHSMO1lENdGXSGHaUyUtr5U1z4QeqC+KMA8
+Date: Fri, 28 Oct 2016 18:02:45 +0000
+Message-ID: <VI1PR0201MB2064F32BE5A9D49A2D97BFDDC2AD0@VI1PR0201MB2064.eurprd02.prod.outlook.com>
+References: <CALOTTY82Dh+HQFjwY-YbWbaxW-gTWe+Z+AMyXv66Mp2w9ekZ1Q@mail.gmail.com>
+In-Reply-To: <CALOTTY82Dh+HQFjwY-YbWbaxW-gTWe+Z+AMyXv66Mp2w9ekZ1Q@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed) header.d=none;gmail.com; dmarc=none action=none header.from=hotmail.co.uk;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [abAhgjLrR2y4jvgu0jY00a96Y66h1fl8]
+x-eopattributedmessage: 0
+x-microsoft-exchange-diagnostics: 1;AM5EUR03HT043;5:m6XV/sIP6T2dyPqOq3mBB2E8E3Lt927XngmuphQ8Uss3rc+ccIaFdOhHvIIEemKKO6cy2uL3n4RkSy8oaleYIfiRqw48mPt2MZduqIoEaMHAra1V/FwYirasdQ3y8cxWYViMG4cfKS6Kchb7DIH57A==;24:zpZw0dQu6EFLImiEdDL83pmSP1e6lnqrX/B4OEoI+xJ17CO0yhDTav8MfFY7HgbaLlw2j8Q8zDm7WYWRTGe18YMJr0Dxb4iU1rd+FCLqFdI=;7:cAsxPyCBB3rYLmZhs0lDq1e6dnK3qD/y+7xEvid5cmjnGSpkQa3OHH5CG5rbx1rQAVJzP/TGu/wB1c+/4BKjzbUYvbe31Mis4ucvQpuCUhHUTpZMhiAnb/sbGdmZoQJiqbxKxsDPuHYXuluQljeincHRvbSJafecGeZSyycrcK8aFvqajJY00cv1vvSXnGqi5pk7tMb3gj+foEvGkZctQ6qcMR3Loik58gkC3vdwF+gJwWBWBInzbt3UILrOONW1LBuK3WheTBHeT/uBxQijvlX26ZEHIfDlGYkBXBIlIo6uNwSGorjHYJ7bhUMIgpxXsf4FJdYIkAWeDnkT/KrC7E1lvXxpxeG0lQyBYPlBnEQ=
+x-forefront-antispam-report: EFV:NLI;SFV:NSPM;SFS:(10019020)(98900003);DIR:OUT;SFP:1102;SCL:1;SRVR:AM5EUR03HT043;H:VI1PR0201MB2064.eurprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;
+x-ms-office365-filtering-correlation-id: cfedabd7-2141-471f-5830-08d3ff5c9f1d
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(1601124038)(1603103081)(1601125047);SRVR:AM5EUR03HT043;
+x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:(432015012)(102415321)(82015046);SRVR:AM5EUR03HT043;BCL:0;PCL:0;RULEID:;SRVR:AM5EUR03HT043;
+x-forefront-prvs: 0109D382B0
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+Content-Type: multipart/mixed; boundary="_004_VI1PR0201MB2064F32BE5A9D49A2D97BFDDC2AD0VI1PR0201MB2064_"
+MIME-Version: 1.0
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Oct 2016 18:02:45.8214 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR03HT043
+Return-Path: mihir_dilip@hotmail.co.uk
+X-OriginalArrivalTime: 28 Oct 2016 18:02:48.0937 (UTC) FILETIME=[7E580D90:01D23145]
+
+--_004_VI1PR0201MB2064F32BE5A9D49A2D97BFDDC2AD0VI1PR0201MB2064_
+Content-Type: multipart/alternative; boundary="_000_VI1PR0201MB2064F32BE5A9D49A2D97BFDDC2AD0VI1PR0201MB2064_"
+
+--_000_VI1PR0201MB2064F32BE5A9D49A2D97BFDDC2AD0VI1PR0201MB2064_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Dharu,
+
+
+I have changed few things.
+
+
+Regards,
+
+Jij
+
+
+
+
+________________________________
+From: Dharita Queshil <dharu.q@gmail.com>
+Sent: 28 October 2016 08:31
+To: Mihir Dilip; Priyanka Queshil
+Subject: Network and Computer Security Proposal
+
+Hiii jijj
+Thanks Jijuu :D
+
+--_000_VI1PR0201MB2064F32BE5A9D49A2D97BFDDC2AD0VI1PR0201MB2064_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hi Dharu,</p>
+<p><br>
+</p>
+<p>I have changed few things.&nbsp;</p>
+<p><br>
+</p>
+<p>Regards,</p>
+<p>Jij</p>
+<p><br>
+</p>
+<div id=3D"Signature"><br>
+</div>
+<br>
+<br>
+<div style=3D"color: rgb(0, 0, 0);">
+<div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Dharita Queshil &lt=
+;dharu.q@gmail.com&gt;<br>
+<b>Sent:</b> 28 October 2016 08:31<br>
+<b>To:</b> Mihir Dilip; Priyanka Queshil<br>
+<b>Subject:</b> Network and Computer Security Proposal</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt;">
+<div class=3D"PlainText">Hiii jijj<br>
+Thanks Jijuu :D<br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_VI1PR0201MB2064F32BE5A9D49A2D97BFDDC2AD0VI1PR0201MB2064_--
+--_004_VI1PR0201MB2064F32BE5A9D49A2D97BFDDC2AD0VI1PR0201MB2064_
+Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document; name="SIRSproposal.docx"
+Content-Description: SIRSproposal.docx
+Content-Disposition: attachment; filename="SIRSproposal.docx"; size=1469803; creation-date="Fri, 28 Oct 2016 18:02:01 GMT"; modification-date="Fri, 28 Oct 2016 18:02:01 GMT"
+Content-Transfer-Encoding: base64
+
+
+--_004_VI1PR0201MB2064F32BE5A9D49A2D97BFDDC2AD0VI1PR0201MB2064_--
