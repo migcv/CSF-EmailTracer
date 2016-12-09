@@ -428,7 +428,6 @@ function spoofedMails(){
 	for(i = 0; i < receivedDates.length; i++){
 		a1 = new Date(receivedDates[i]);
 		if(a1 - a2 > 600000){
-			alert("TIMESTAMPS Spoof Suspect!")
             spoofedcase++;
 		}
 	}
@@ -438,7 +437,6 @@ function spoofedMails(){
     if(by1.length == from1.length) {
         for(i = 1; i < by1.length - 1; i++) {
             if(strcmp(by1[i], from1[i+1]) != 0) {
-                alert("BY_FROM Spoof Suspect!")
                 spoofedcase++;
                 break;
             }
@@ -456,7 +454,6 @@ function spoofedMails(){
         console.log(fromDomain);
         console.log(domain);
         if(strcmp(domain[i], fromDomain[i]) != 0) {
-            alert("MSG_ID Spoof Suspect!")
             spoofedcase++;
             break;
         }
